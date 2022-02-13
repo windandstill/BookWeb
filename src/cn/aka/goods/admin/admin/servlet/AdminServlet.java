@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet("/Admin/AdminServlet")
+@WebServlet("/admin/adminServlet")
 public class AdminServlet extends BaseServlet {
     private AdminService adminService = new AdminServiceImp();
     /**

@@ -33,7 +33,7 @@
 <h1>管理员登录页面</h1>
 <hr/>
   <p style="font-weight: 900; color: red">${msg }</p>
-<form action="<c:url value='/Admin/AdminServlet?method=login'/>" method="post" onsubmit="return checkForm()">
+<form action="<c:url value='/admin/adminServlet?method=login'/>" method="post" onsubmit="return checkForm()">
 	<input type="hidden" name="method" value="login"/>
 	管理员账户：<input type="text" name="adminname" value="" id="adminname"/><br/>
 	密　　　码：<input type="password" name="adminpwd" id="adminpwd"/><br/>

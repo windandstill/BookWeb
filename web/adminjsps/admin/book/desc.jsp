@@ -51,38 +51,38 @@ $(function() {
     <br/>
     <br/>
   <div id="show">
-    <div class="sm">Spring实战(第3版)（In Action系列中最畅销的Spring图书，近十万读者学习Spring的共同选择）</div>
-    <img align="top" src="<c:url value='/book_img/23254532-1_w.jpg'/>" class="tp"/>
+    <div class="sm">${book.bname}</div>
+    <img align="top" src="<c:url value='/${book.image_w}'/>" class="tp"/>
     <div id="book" style="float:left;">
 	    <ul>
-	    	<li>商品编号：4A9574F03A6B40C1B2A437237C17DEEC</li>
-	    	<li>当前价：<span class="price_n">&yen;40.7</span></li>
-	    	<li>定价：<span style="text-decoration:line-through;">&yen;59.0</span>　折扣：<span style="color: #c30;">6.9</span>折</li>
+			<li>${book.bid}</li>
+			<li>传智价：<span class="price_n">&yen;${book.currPrice}</span></li>
+			<li>定价：<span class="spanPrice">&yen;${book.price}</span>　折扣：<span style="color: #c30;">${book.discount}</span>折</li>
 	    </ul>
 		<hr style="margin-left: 50px; height: 1px; color: #dcdcdc"/>
 		<table class="tab">
 			<tr>
 				<td colspan="3">
-					作者：Craig Walls著
+					作者：${book.author} 著
 				</td>
 			</tr>
 			<tr>
 				<td colspan="3">
-					出版社：人民邮电出版社</a>
+					出版社：${book.press}
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3">出版时间：2013-6-1</td>
+				<td colspan="3">出版时间：${book.publishtime}</td>
 			</tr>
 			<tr>
-				<td>版次：1</td>
-				<td>页数：374</td>
-				<td>字数：487000</td>
+				<td>版次：${book.edition}</td>
+				<td>页数：${book.pageNum}</td>
+				<td>字数：${book.wordNum}</td>
 			</tr>
 			<tr>
-				<td width="180">印刷时间：2013-6-1</td>
-				<td>开本：16开</td>
-				<td>纸张：胶版纸</td>
+				<td width="180">印刷时间：${book.printtime}</td>
+				<td>开本：${book.booksize} 开</td>
+				<td>纸张：${book.paper}</td>
 			</tr>
 		</table>
 	</div>

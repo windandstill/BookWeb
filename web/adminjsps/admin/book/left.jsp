@@ -28,7 +28,7 @@ function load() {
 
 	<c:forEach items="${parents}" var="parent">
 		<c:forEach items="${parent.children}" var="child">
-			bar.add("${parent.cname}", "${child.cname}", "/User/BookServlet?method=findByCategory&cid=${child.cid}", "body");
+			bar.add("${parent.cname}", "${child.cname}", "<c:url value='/admin/bookServlet?method=findByCategory&cid=${child.cid}'/>", "body");
 		</c:forEach>
 	</c:forEach>
 

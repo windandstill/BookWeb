@@ -26,19 +26,19 @@
 	<c:forEach items="${pb.beanList }" var="book">
 		<li>
 			<div class="inner">
-				<a class="pic" href="<c:url value='/User/BookServlet?method=load&bid=${book.bid}'/>"><img src="<c:url value='/${book.image_b}'/>" border="0"/></a>
+				<a class="pic" href="<c:url value='/user/bookServlet?method=load&bid=${book.bid}'/>"><img src="<c:url value='/${book.image_b}'/>" border="0"/></a>
 				<p class="price" >
 					<span class="price_n">&yen${book.currPrice};</span>
 					<span class="price_r">&yen;${book.price}</span>
 					(<span class="price_s">${book.discount}折</span>)
 				</p>
-				<p><a id="bookname" title="${book.bname}" href="<c:url value='/User/BookServlet?method=load&bid=${book.bid}'/>">${book.bname}</a></p>
+				<p><a id="bookname" title="${book.bname}" href="<c:url value='/user/bookServlet?method=load&bid=${book.bid}'/>">${book.bname}</a></p>
 					<%-- url标签会自动对参数进行url编码 --%>
-				<c:url value="/User/BookServlet" var="authorUrl">
+				<c:url value="/user/bookServlet" var="authorUrl">
 					<c:param name="method" value="findByAuthor"/>
 					<c:param name="author" value="${book.author}"/>
 				</c:url>
-				<c:url value="/User/BookServlet" var="pressUrl">
+				<c:url value="/user/bookServlet" var="pressUrl">
 					<c:param name="method" value="findByPress"/>
 					<c:param name="press" value="${book.press}"/>
 				</c:url>

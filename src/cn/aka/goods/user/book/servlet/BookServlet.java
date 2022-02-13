@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
-@WebServlet("/User/BookServlet")
+@WebServlet("/user/bookServlet")
 public class BookServlet extends BaseServlet {
     private BookService bookService = new BookServiceImp();
     /**
