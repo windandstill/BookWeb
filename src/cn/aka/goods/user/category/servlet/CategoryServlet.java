@@ -1,7 +1,7 @@
 package cn.aka.goods.user.category.servlet;
 
 import cn.aka.goods.user.category.domain.Category;
-import cn.aka.goods.user.category.service.CategoryService;
+import cn.aka.goods.user.category.service.imp.CategoryServiceImp;
 import cn.aka.goods.utils.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @WebServlet("/user/categorySerlvet")
 public class CategoryServlet extends BaseServlet {
-    private CategoryService categoryService = new CategoryService();
+    private CategoryServiceImp categoryService = new CategoryServiceImp();
 
     public void findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Category> parents = categoryService.findAll();

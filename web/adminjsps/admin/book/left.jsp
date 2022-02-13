@@ -26,21 +26,11 @@ function load() {
 	bar.config.imgDir = "<c:url value='/menu/img/'/>";
 	bar.config.radioButton=true;
 
-	bar.add("程序设计", "Java Javascript", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-	bar.add("程序设计", "JSP", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-	bar.add("程序设计", "C C++ VC VC++", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-
-	bar.add("办公室用书", "微软Office", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-	bar.add("办公室用书", "计算机初级入门", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-
-	bar.add("图形 图像 多媒体", "Photoshop", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-	bar.add("图形 图像 多媒体", "3DS MAX", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-	bar.add("图形 图像 多媒体", "网页设计", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-	bar.add("图形 图像 多媒体", "Flush", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-
-	bar.add("操作系统/系统开发", "Windows", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-	bar.add("操作系统/系统开发", "Linux", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
-	bar.add("操作系统/系统开发", "系统开发", "<c:url value='/adminjsps/admin/book/list.jsp'/>", "body");
+	<c:forEach items="${parents}" var="parent">
+		<c:forEach items="${parent.children}" var="child">
+			bar.add("${parent.cname}", "${child.cname}", "/User/BookServlet?method=findByCategory&cid=${child.cid}", "body");
+		</c:forEach>
+	</c:forEach>
 
 	var d = document.getElementById("menu");
 	d.innerHTML = bar.toString();

@@ -1,9 +1,9 @@
 package cn.aka.goods.user.pager;
 
 public class Expression {
-	private String name;
-	private String operator;
-	private String value;
+	private String name;//名称
+	private String operator;//运算符
+	private String value;//值
 	public String getName() {
 		return name;
 	}

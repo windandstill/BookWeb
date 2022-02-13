@@ -54,7 +54,6 @@ public class BaseServlet extends HttpServlet {
                         request.getRequestDispatcher(path).forward(request, response);
                     } else if (start.equals("r")) {
                         response.sendRedirect(request.getContextPath() + path);
-
                     }
                 }
             }

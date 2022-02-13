@@ -24,8 +24,8 @@
   </head>
   
   <body>
-  <form action="<c:url value='/jsps/book/list.jsp'/>" method="get">
-  	<input type="hidden" name="method" value=""/>
+  <form action="<c:url value='/User/BookServlet'/>" method="get">
+  	<input type="hidden" name="method" value="findByCombination"/>
 <table align="center">
 	<tr>
 		<td>书名：</td>

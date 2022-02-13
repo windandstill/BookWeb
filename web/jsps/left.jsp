@@ -29,7 +29,7 @@
 
             <c:forEach items="${parents}" var="parent">
                 <c:forEach items="${parent.children}" var="child">
-                    bar.add("${parent.cname}", "${child.cname}", "/jsps/book/list.jsp", "body");
+                    bar.add("${parent.cname}", "${child.cname}", "<c:url value='/User/BookServlet?method=findByCategory&cid=${child.cid}'/>", "body");
                 </c:forEach>
             </c:forEach>
 
@@ -39,6 +39,6 @@
 </head>
 
 <body>
-<div id="menu"></div>
+  <div id="menu"></div>
 </body>
 </html>
