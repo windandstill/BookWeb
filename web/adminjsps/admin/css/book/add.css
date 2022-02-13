@@ -43,11 +43,11 @@ li {
 }
 
 .btn1 {
-	background: url(/goods/images/hong_2_btn.jpg) left top
+	background: url(../../../../images/hong_2_btn.jpg) left top
 		no-repeat;
 }
 
 .btn2 {
-	background: url(/goods/images/hong_1_btn.jpg) left top
+	background: url(../../../../images/hong_1_btn.jpg) left top
 		no-repeat;
 }

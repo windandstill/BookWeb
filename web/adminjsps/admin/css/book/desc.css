@@ -72,21 +72,21 @@ a:hover {
 }
 
 .editBtn1 {
-	background: url(/goods/images/huang_2_btn.jpg) left top
+	background: url(../../../../images/huang_2_btn.jpg) left top
 		no-repeat;
 }
 
 .editBtn2 {
-	background: url(/goods/images/huang_1_btn.jpg) left top
+	background: url(../../../../images/huang_1_btn.jpg) left top
 		no-repeat;
 }
 
 .delBtn1 {
-	background: url(/goods/images/hong_2_btn.jpg) left top
+	background: url(../../../../images/hong_2_btn.jpg) left top
 		no-repeat;
 }
 
 .delBtn2 {
-	background: url(/goods/images/hong_1_btn.jpg) left top
+	background: url(../../../../images/hong_1_btn.jpg) left top
 		no-repeat;
 }

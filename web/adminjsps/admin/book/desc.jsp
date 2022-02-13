@@ -1,8 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <title>book_desc.jsp</title>
@@ -42,6 +40,18 @@ $(function() {
 		}
 	});
 });
+
+//点击编辑按钮时执行本函数
+function editForm() {
+	$("#method").val("edit");
+	$("#form").submit();
+}
+
+//点击删除按钮时执行本函数
+function deleteForm() {
+	$("#method").val("delete");
+	$("#form").submit();
+}
 
 </script>
   </head>
@@ -95,39 +105,39 @@ $(function() {
    	<input type="hidden" name="bid" value=""/>
    	<input type="hidden" name="image_w" value=""/>
    	<input type="hidden" name="image_b" value=""/>
-    <img align="top" src="<c:url value='/book_img/23254532-1_w.jpg'/>" class="tp"/>
+    <img align="top" src="<c:url value='/${book.image_w}'/>" class="tp"/>
     <div style="float:left;">
 	    <ul>
-	    	<li>商品编号：4A9574F03A6B40C1B2A437237C17DEEC</li>
-	    	<li>书名：　<input id="bname" type="text" name="bname" value="Spring实战(第3版)（In Action系列中最畅销的Spring图书，近十万读者学习Spring的共同选择）" style="width:500px;"/></li>
-	    	<li>当前价：<input id="currPrice" type="text" name="currPrice" value="40.7" style="width:50px;"/></li>
-	    	<li>定价：　<input id="price" type="text" name="price" value="59.0" style="width:50px;"/>
-	    	折扣：<input id="discount" type="text" name="discount" value="6.9" style="width:30px;"/>折</li>
+	    	<li>商品编号：${book.bid}</li>
+	    	<li>书名：　<input id="bname" type="text" name="bname" value="${book.bname}" style="width:500px;"/></li>
+	    	<li>当前价：<input id="currPrice" type="text" name="currPrice" value="${book.currPrice}" style="width:50px;"/></li>
+	    	<li>定价：　<input id="price" type="text" name="price" value="${book.price}" style="width:50px;"/>
+	    	折扣：<input id="discount" type="text" name="discount" value="${book.discount}" style="width:30px;"/>折</li>
 	    </ul>
 		<hr style="margin-left: 50px; height: 1px; color: #dcdcdc"/>
 		<table class="tab">
 			<tr>
 				<td colspan="3">
-					作者：　　<input id="author" type="text" name="author" value="Craig Walls" style="width:150px;"/>
+					作者：　　<input id="author" type="text" name="author" value="${book.author}" style="width:150px;"/>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="3">
-					出版社：　<input id="press" type="text" name="press" value="人民邮电出版社" style="width:200px;"/>
+					出版社：　<input id="press" type="text" name="press" value="${book.press}" style="width:200px;"/>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3">出版时间：<input id="publishtime" type="text" name="publishtime" value="2013-6-1" style="width:100px;"/></td>
+				<td colspan="3">出版时间：<input id="publishtime" type="text" name="publishtime" value="${book.publishtime}" style="width:100px;"/></td>
 			</tr>
 			<tr>
-				<td>版次：　　<input id="edition" type="text" name="edition" value="1" style="width:40px;"/></td>
-				<td>页数：　　<input id="pageNum" type="text" name="pageNum" value="374" style="width:50px;"/></td>
-				<td>字数：　　<input id="wordNum" type="text" name="wordNum" value="48700" style="width:80px;"/></td>
+				<td>版次：　　<input id="edition" type="text" name="edition" value="${book.edition}" style="width:40px;"/></td>
+				<td>页数：　　<input id="pageNum" type="text" name="pageNum" value="${book.pageNum}" style="width:50px;"/></td>
+				<td>字数：　　<input id="wordNum" type="text" name="wordNum" value="${book.wordNum}" style="width:80px;"/></td>
 			</tr>
 			<tr>
-				<td width="250px">印刷时间：<input id="printtime" type="text" name="printtime" value="2013-6-1" style="width:100px;"/></td>
-				<td width="250px">开本：　　<input id="booksize" type="text" name="booksize" value="16" style="width:30px;"/></td>
-				<td>纸张：　　<input id="paper" type="text" name="paper" value="胶版纸" style="width:80px;"/></td>
+				<td width="250px">印刷时间：<input id="printtime" type="text" name="printtime" value="${book.printtime}" style="width:100px;"/></td>
+				<td width="250px">开本：　　<input id="booksize" type="text" name="booksize" value="${book.booksize}" style="width:30px;"/></td>
+				<td>纸张：　　<input id="paper" type="text" name="paper" value="${book.paper}" style="width:80px;"/></td>
 			</tr>
 			<tr>
 				<td>

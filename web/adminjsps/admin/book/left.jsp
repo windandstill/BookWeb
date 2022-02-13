@@ -16,15 +16,16 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<link rel="stylesheet" type="text/css" href="<c:url value='/adminjsps/admin/css/book/left.css'/>">
+	  <script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/menu/mymenu.js'/>"></script>
 	<link rel="stylesheet" href="<c:url value='/menu/mymenu.css'/>" type="text/css" media="all">
 <script language="javascript">
 var bar = new Q6MenuBar("bar", "图书分类");
 
 function load() {
-	bar.colorStyle = 2;
-	bar.config.imgDir = "<c:url value='/menu/img/'/>";
-	bar.config.radioButton=true;
+	bar.colorStyle = 2;//指定配色样式 0 - 4
+	bar.config.imgDir = "<c:url value='/menu/img/'/>";//小工具所需图片路径
+	bar.config.radioButton=true;//是否排斥,多个一级分类是否排斥
 
 	<c:forEach items="${parents}" var="parent">
 		<c:forEach items="${parent.children}" var="child">

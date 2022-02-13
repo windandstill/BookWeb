@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import static sun.plugin2.util.PojoUtil.toJson;
+
 @WebServlet("/admin/bookServlet")
 public class BookServlet extends BaseServlet {
     private BookService bookService = new BookServiceImp();
@@ -47,6 +49,56 @@ public class BookServlet extends BaseServlet {
         req.setAttribute("msg", "删除图书成功！");
         return "f:/adminjsps/msg.jsp";
     }
+
+    /**
+     * 添加图书第一步,获取所有一级分类，保存之转发到add.jsp，该页面会在下拉列表中显示所有一级分类
+     */
+
+    public String addPre(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        //1. 获取所有一级分类，保存之
+        List<Category> parents = categoryService.findParents();
+        req.setAttribute("parents", parents);
+        //2. 转发到add.jsp，该页面会在下拉列表中显示所有一级分类
+        return "f:/adminjsps/admin/book/add.jsp";
+    }
+
+    public String ajaxFindChildren(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // 1. 获取pid
+        String pid = req.getParameter("pid");
+        // 2. 通过pid查询出所有2级分类
+        List<Category> children = categoryService.findChildren(pid);
+        // 3. 把List<Category>转换成json，输出给客户端
+        String json = toJson(children);
+        resp.getWriter().print(json);
+        return null;
+    }
+    // {"cid":"fdsafdsa", "cname":"fdsafdas"}
+    // {"cid":"fdsafdsa", "cname":"fdsafdas"}
+    private String toJson(Category category) {
+        StringBuilder sb = new StringBuilder("{");
+        sb.append("\"cid\"").append(":").append("\"").append(category.getCid()).append("\"");
+        sb.append(",");
+        sb.append("\"cname\"").append(":").append("\"").append(category.getCname()).append("\"");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    // [{"cid":"fdsafdsa", "cname":"fdsafdas"}, {"cid":"fdsafdsa", "cname":"fdsafdas"}]
+    private String toJson(List<Category> categoryList) {
+        StringBuilder sb = new StringBuilder("[");
+        for(int i = 0; i < categoryList.size(); i++) {
+            sb.append(toJson(categoryList.get(i)));
+            if(i < categoryList.size() - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+
     /**
      * 获取当前页码
      */

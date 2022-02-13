@@ -62,7 +62,7 @@ dt {
 
 .title {
 	border: 1px solid #d0d0d0;
-	background: url(/goods/images/bg_btns.png) repeat-x;
+	background: url(../../../../images/bg_btns.png) repeat-x;
 	background-position: 0 -132px;
 	margin-left: 2px;
 	height: 30px;
@@ -78,7 +78,7 @@ td .bookname {
 }
 
 .pay {
-	background: url(/goods/images/sprites_orderdetails.gif)
+	background: url(../../../../images/sprites_orderdetails.gif)
 		no-repeat;
 	display: inline-block;
 	background-position: 0 -200px;
@@ -109,7 +109,7 @@ a {
 }
 
 #confirm {
-	background: url(/goods/images/confirm.jpg) no-repeat;
+	background: url(../../../../images/confirm.jpg) no-repeat;
 	display: inline-block;
 	height: 34px;
 	width: 142px;
@@ -122,7 +122,7 @@ a {
 }
 
 #cancel {
-	background: url(/goods/images/huang_2_btn.jpg)
+	background: url(../../../../images/huang_2_btn.jpg)
 		no-repeat;
 	display: inline-block;
 	height: 34px;
@@ -137,7 +137,7 @@ a {
 }
 
 #cancel:hover {
-	background: url(/goods/images/huang_1_btn.jpg)
+	background: url(../../../../images/huang_1_btn.jpg)
 		no-repeat;
 	display: inline-block;
 	height: 34px;
@@ -151,7 +151,7 @@ a {
 }
 
 #deliver {
-	background: url(/goods/images/hong_2_btn.jpg) no-repeat;
+	background: url(../../../../images/hong_2_btn.jpg) no-repeat;
 	display: inline-block;
 	height: 34px;
 	width: 142px;
@@ -165,7 +165,7 @@ a {
 }
 
 #deliver:hover {
-	background: url(/goods/images/hong_1_btn.jpg) no-repeat;
+	background: url(../../../../images/hong_1_btn.jpg) no-repeat;
 	display: inline-block;
 	height: 34px;
 	width: 142px;

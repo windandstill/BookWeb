@@ -16,9 +16,6 @@ public class CategoryDaoImp implements CategoryDao {
 
     /**
      * 将map中的数据封装为Category对象
-     *
-     * @param map
-     * @return Category对象
      */
     private Category toCategory(Map<String, Object> map) {
         Category category = CommonUtils.toBean(map, Category.class);//将此方法可以放入JdbcTemplate
@@ -33,9 +30,6 @@ public class CategoryDaoImp implements CategoryDao {
 
     /**
      * 多个map数据映射到Category
-     *
-     * @param maps
-     * @return Category对象集合
      */
     private List<Category> toCategoryList(List<Map<String, Object>> maps) {
         List<Category> categoryList = new ArrayList<Category>();
@@ -49,6 +43,7 @@ public class CategoryDaoImp implements CategoryDao {
     /**
      * 查询所有分类
      */
+    @Override
     public List<Category> findAll() {
         String sql = "select * from goods.t_category where pid is null order by orderBy";
         List<Map<String, Object>> maps = template.queryForList(sql);
@@ -60,6 +55,10 @@ public class CategoryDaoImp implements CategoryDao {
         return parents;
     }
 
+    /**
+     * 通过父类查询子类
+     */
+    @Override
     public List<Category> findByParent(String pid){
         String sql = "select * from goods.t_category where pid =? order by orderBy";
         List<Map<String, Object>> maps = template.queryForList(sql,pid);
@@ -67,6 +66,7 @@ public class CategoryDaoImp implements CategoryDao {
     }
 
 
+    @Override
     public void add(Category category){
         String sql = "insert into goods.t_category(cid,cname,pid,`desc`) values (?,?,?,?)";
         String pid = null;//初始一级分类
@@ -81,6 +81,7 @@ public class CategoryDaoImp implements CategoryDao {
      * 获取一级分类
      * @return
      */
+    @Override
     public List<Category> findParents() {
         String sql = "select * from goods.t_category where pid is null order by orderBy";
         List<Map<String, Object>> maps = template.queryForList(sql);
@@ -91,6 +92,7 @@ public class CategoryDaoImp implements CategoryDao {
     /**
      * 加载分类
      */
+    @Override
     public Category load(String cid){
         String sql = "select * from goods.t_category where cid = ?";
         return toCategory(template.queryForMap(sql,cid));
@@ -99,6 +101,7 @@ public class CategoryDaoImp implements CategoryDao {
     /**
      * 修改分类
      */
+    @Override
     public void edit(Category category){
         String sql="update goods.t_category set cname=?,pid=?,`desc`=? where cid =?";
         String pid = null;
@@ -112,6 +115,7 @@ public class CategoryDaoImp implements CategoryDao {
     /**
      *查询子分类个数
      */
+    @Override
     public int findChildrenCountByParent(String cid){
         String sql = "select count(*) from goods.t_category where pid = ?";
         Long total = template.queryForObject(sql, Long.class, cid);
@@ -122,6 +126,7 @@ public class CategoryDaoImp implements CategoryDao {
      * 删除分类
      * @param cid
      */
+    @Override
     public void delete(String cid){
         String sql = "delete from goods.t_category where cid = ?";
         template.update(sql,cid);
