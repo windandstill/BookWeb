@@ -1,7 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript">
-    function _go() {
+<%--<script type="text/javascript">--%>
+<script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
+<script>
+function _go() {
         var pageNow = $("#pageCode").val();//获取文本框中的当前页码
         if(!/^[1-9]\d*$/.test(pageNow)) {//对当前页码进行整数校验
             alert('请输入正确的页码！');
