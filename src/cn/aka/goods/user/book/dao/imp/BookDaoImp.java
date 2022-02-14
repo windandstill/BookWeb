@@ -6,7 +6,6 @@ import cn.aka.goods.user.category.domain.Category;
 import cn.aka.goods.user.pager.PageBean;
 import cn.aka.goods.user.pager.PageConstants;
 import cn.aka.goods.utils.JDBCUtils;
-import cn.itcast.commons.CommonUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
