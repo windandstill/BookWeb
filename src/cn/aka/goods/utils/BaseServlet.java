@@ -12,7 +12,8 @@ public class BaseServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
-        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         //获取表单路径后面带的参数method=方法名中的方法名
         String methodName = request.getParameter("method");
 

@@ -10,6 +10,15 @@ import java.sql.SQLException;
 
 public class BookServiceImp implements BookService {
     private BookDao bookDao = new BookDaoImp();
+    /**
+     * 删除图书
+     * @param bid
+     * @throws SQLException
+     */
+    @Override
+    public void delete(String bid){
+    bookDao.delete(bid);
+    }
 
     /**
      * 加载图书
@@ -20,8 +29,8 @@ public class BookServiceImp implements BookService {
     }
 
     @Override
-    public void delete(String bid) {
-
+    public void edit(Book book) {
+        bookDao.edit(book);
     }
 
     @Override

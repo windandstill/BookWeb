@@ -7,6 +7,7 @@ import cn.aka.goods.user.category.domain.Category;
 import cn.aka.goods.user.category.service.imp.CategoryServiceImp;
 import cn.aka.goods.user.pager.PageBean;
 import cn.aka.goods.utils.BaseServlet;
+import cn.itcast.commons.CommonUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 
 @WebServlet("/admin/bookServlet")
@@ -30,6 +32,31 @@ public class BookServlet extends BaseServlet {
         List<Category> parents = categoryService.findAll();
         request.setAttribute("parents", parents);
         request.getRequestDispatcher("../adminjsps/admin/book/left.jsp").forward(request,response);
+    }
+
+    /**
+     * 编辑图书
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
+    public String edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        /*
+         * 1. 把表单数据封装到Book对象中
+         * 2. 封装cid到Category中
+         * 3. 把Category赋给Book
+         * 4. 调用service完成工作
+         * 5. 保存成功信息，转发到msg.jsp
+         */
+        Map map = request.getParameterMap();
+        Book book = CommonUtils.toBean(map, Book.class);
+        Category category = CommonUtils.toBean(map, Category.class);
+        book.setCategory(category);
+        bookService.edit(book);
+        request.setAttribute("msg", "修改图书成功！");
+        return "f:/adminjsps/msg.jsp";
     }
 
     /**

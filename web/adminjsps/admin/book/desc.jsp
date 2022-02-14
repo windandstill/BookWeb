@@ -23,6 +23,47 @@
 <script type="text/javascript" src="<c:url value='/adminjsps/admin/js/book/desc.js'/>"></script>
 
 <script type="text/javascript">
+	$(function () {
+		$("#publishtime").datepick({dateFormat:"yy-mm-dd"});
+		$("#printtime").datepick({dateFormat:"yy-mm-dd"});
+
+		$("#btn").addClass("btn1");
+		$("#btn").hover(
+				function() {
+					$("#btn").removeClass("btn1");
+					$("#btn").addClass("btn2");
+				},
+				function() {
+					$("#btn").removeClass("btn2");
+					$("#btn").addClass("btn1");
+				}
+		);
+
+		$("#btn").click(function() {
+			var bname = $("#bname").val();
+			var currPrice = $("#currPrice").val();
+			var price = $("#price").val();
+			var discount = $("#discount").val();
+			var author = $("#author").val();
+			var press = $("#press").val();
+			var pid = $("#pid").val();
+			var cid = $("#cid").val();
+			var image_w = $("#image_w").val();
+			var image_b = $("#image_b").val();
+
+			if(!bname || !currPrice || !price || !discount || !author || !press || !pid || !cid || !image_w || !image_b) {
+				alert("图名、当前价、定价、折扣、作者、出版社、1级分类、2级分类、大图、小图都不能为空！");
+				return false;
+			}
+
+			if(isNaN(currPrice) || isNaN(price) || isNaN(discount)) {
+				alert("当前价、定价、折扣必须是合法小数！");
+				return false;
+			}
+			$("#form").submit();
+		});
+	});
+
 
 $(function() {
 	$("#box").attr("checked", false);
@@ -133,10 +174,11 @@ function deleteForm() {
   
   <div id='formDiv'>
    <div class="sm">&nbsp;</div>
-   <form action="javascript:alert('编辑或删除图书成功！')" method="post" id="form">
-   	<input type="hidden" name="bid" value=""/>
-   	<input type="hidden" name="image_w" value=""/>
-   	<input type="hidden" name="image_b" value=""/>
+   <form action="<c:url value='/admin/bookServlet'/>" method="post" id="form">
+	   <input type="hidden" name="method" id="method"/>
+	   <input type="hidden" name="bid" value="${book.bid }"/>
+   <%--	<input type="hidden" name="image_w" value=""/>
+   	<input type="hidden" name="image_b" value=""/>--%>
     <img align="top" src="<c:url value='/${book.image_w}'/>" class="tp"/>
     <div style="float:left;">
 	    <ul>
@@ -193,7 +235,7 @@ function deleteForm() {
 			<tr>
 				<td colspan="2">
 					<input onclick="editForm()" type="button" name="method" id="editBtn" class="btn" value="编　　辑">
-					<input onclick="delForm()" type="button" name="method" id="delBtn" class="btn" value="删　　除">
+					<input onclick="deleteForm()" type="button" name="method" id="delBtn" class="btn" value="删　　除">
 				</td>
 				<td></td>
 			</tr>

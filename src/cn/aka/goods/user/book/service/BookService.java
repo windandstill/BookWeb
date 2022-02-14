@@ -11,8 +11,13 @@ public interface BookService {
      */
     Book load(String bid);
 
+    void edit(Book book);
+    /**
+     * 删除图书
+     * @param bid
+     * @throws SQLException
+     */
     void delete(String bid);
-
 
     PageBean<Book> findByCategory(String cid, int pageNow) throws SQLException;
 

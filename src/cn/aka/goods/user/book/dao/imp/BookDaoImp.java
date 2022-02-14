@@ -17,6 +17,40 @@ import java.util.Map;
 public class BookDaoImp implements BookDao {
     private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
 
+    /**
+     * 删除图书
+     * @param bid
+     * @throws SQLException
+     */
+    @Override
+    public void delete(String bid){
+        String sql = "delete from t_book where bid=?";
+        template.update(sql, bid);
+    }
+
+    /**
+     * 修改图书
+     * @param book
+     */
+    @Override
+    public void edit(Book book){
+        String sql = "update t_book set bname=?,author=?,price=?,currPrice=?," +
+                "discount=?,press=?,publishtime=?,edition=?,pageNum=?,wordNum=?," +
+                "printtime=?,booksize=?,paper=?,cid=? where bid=?";
+        Object[] params = {book.getBname(),book.getAuthor(),
+                book.getPrice(),book.getCurrPrice(),book.getDiscount(),
+                book.getPress(),book.getPublishtime(),book.getEdition(),
+                book.getPageNum(),book.getWordNum(),book.getPrinttime(),
+                book.getBooksize(),book.getPaper(),
+                book.getCategory().getCid(),book.getBid()};
+        template.update(sql,params);
+    }
+
+    /**
+     * 通过b id  连接查询 获取book和category中属性
+     * @param bid
+     * @return
+     */
     @Override
     public Book findByBid(String bid) {
         String sql = "SELECT * FROM goods.t_book b , goods.t_category c  WHERE b.cid=c.cid AND b.bid=?";
@@ -45,6 +79,7 @@ public class BookDaoImp implements BookDao {
         String sql="select * from t_book where cid= '"+cid+"'";
         return findByCriteria(sql,pageNow);
     }
+
     /**
      * 按书名模糊查询
      */
@@ -53,6 +88,7 @@ public class BookDaoImp implements BookDao {
         String sql="select * from t_book where bname like '%" + bname + "%'";
         return findByCriteria(sql,pageNow);
     }
+
     /**
      * 按作者查
      */
@@ -61,6 +97,7 @@ public class BookDaoImp implements BookDao {
         String sql="select * from t_book where author like '%" + author + "%'";
         return findByCriteria(sql, pageNow);
     }
+
     /**
      * 按出版社查
      */
@@ -69,6 +106,7 @@ public class BookDaoImp implements BookDao {
         String sql="select * from t_book where press like '%" + press + "%'";
         return findByCriteria(sql, pageNow);
     }
+
     /**
      * 多条件组合查询
      */
@@ -90,7 +128,6 @@ public class BookDaoImp implements BookDao {
     /**
      *写入sql 返回分页查询结果
      */
-    @Override
     public PageBean<Book> findByCriteria(String sql, int pageNow) {
         int pageSize = PageConstants.BOOK_PAGE_SIZE;//每页记录数
         int totalRecords = 0;
@@ -113,6 +150,11 @@ public class BookDaoImp implements BookDao {
         return pb;
     }
 
+    /**
+     * 查询指定分类下图书个数
+     * @param cid
+     * @return
+     */
     @Override
     public int findBookCountByCategory(String cid) {
         String sql = "select count(*) from goods.t_book where cid = ?";
@@ -120,6 +162,9 @@ public class BookDaoImp implements BookDao {
         return total == null ? 0 : total.intValue();
     }
 
+    /**
+     * 添加图书
+     */
     @Override
     public void add(Book book) {
         String sql = "insert into t_book(bid,bname,author,price,currPrice," +
