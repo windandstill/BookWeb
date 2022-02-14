@@ -114,7 +114,7 @@ public class AddBookServlet extends HttpServlet {
         Image image = icon.getImage();
         // 3. 获取宽高来进行校验
         if(image.getWidth(null) > 350 || image.getHeight(null) > 350) {
-            error("您上传的图片尺寸超出了350*350！", request, response);
+            error("您上传的大图图片尺寸超出了350*350！", request, response);
             destFile.delete();//删除图片
             return;
         }
@@ -134,7 +134,7 @@ public class AddBookServlet extends HttpServlet {
             // 校验文件名称的扩展名
             if(!filename.toLowerCase().endsWith(".jpg")) {
                 error("上传的图片扩展名必须是JPG", request, response);
-                return;
+                return ;
             }
             // 校验图片的尺寸
             // 保存上传的图片，把图片new成图片对象：Image、Icon、ImageIcon、BufferedImage、ImageIO
@@ -154,8 +154,8 @@ public class AddBookServlet extends HttpServlet {
             // 2. 通过ImageIcon得到Image对象
             image = icon.getImage();
             // 3. 获取宽高来进行校验
-            if(image.getWidth(null) > 350 || image.getHeight(null) > 350) {
-                error("您上传的图片尺寸超出了350*350！", request, response);
+            if(image.getWidth(null) > 200 || image.getHeight(null) > 200) {
+                error("您上传的小图图片尺寸超出了200*200！", request, response);
                 destFile.delete();//删除图片
                 return;
             }
@@ -174,6 +174,6 @@ public class AddBookServlet extends HttpServlet {
     private void error(String msg,HttpServletRequest request,HttpServletResponse response)
             throws ServletException ,IOException{
         request.setAttribute("msg",msg);
-        request.getRequestDispatcher("adminjsps/admin/book/add.jsp").forward(request,response);
+        request.getRequestDispatcher("/admin/bookServlet?method=addPre").forward(request,response);
     }
 }
