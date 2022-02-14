@@ -53,7 +53,6 @@ public class BookServlet extends BaseServlet {
     /**
      * 添加图书第一步,获取所有一级分类，保存之转发到add.jsp，该页面会在下拉列表中显示所有一级分类
      */
-
     public String addPre(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         //1. 获取所有一级分类，保存之
@@ -63,6 +62,9 @@ public class BookServlet extends BaseServlet {
         return "f:/adminjsps/admin/book/add.jsp";
     }
 
+    /**
+     *ajax点击一级分类异步加载二级分类
+     */
     public String ajaxFindChildren(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         // 1. 获取pid

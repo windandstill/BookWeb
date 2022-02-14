@@ -27,9 +27,12 @@ public interface BookService {
     Book findByBid(String bid);
 
     /**
+     * 添加图书
+     */
+    public void add(Book book);
+
+    /**
      * 返回二级标题下图书数量
-     * @param cid
-     * @return
      */
     public int findBookCountByCategory(String cid);
 }

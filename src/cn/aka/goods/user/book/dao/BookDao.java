@@ -26,4 +26,9 @@ public interface BookDao {
      * @return
      */
     public int findBookCountByCategory(String cid);
+
+    /**
+     * 添加图书
+     */
+    void add(Book book);
 }

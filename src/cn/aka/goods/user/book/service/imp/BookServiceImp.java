@@ -54,11 +54,17 @@ public class BookServiceImp implements BookService {
         return bookDao.findByBid(bid);
     }
 
+    @Override
+    public void add(Book book) {
+        bookDao.add(book);
+    }
+
     /**
      * 返回二级标题下图书数量
      * @param cid
      * @return
      */
+    @Override
     public int findBookCountByCategory(String cid){
         return bookDao.findBookCountByCategory(cid);
     }

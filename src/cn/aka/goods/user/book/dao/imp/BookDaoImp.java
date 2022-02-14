@@ -105,4 +105,19 @@ public class BookDaoImp implements BookDao {
         Long total = template.queryForObject(sql, Long.class, cid);
         return total == null ? 0 : total.intValue();
     }
+
+    @Override
+    public void add(Book book) {
+        String sql = "insert into t_book(bid,bname,author,price,currPrice," +
+                "discount,press,publishtime,edition,pageNum,wordNum,printtime," +
+                "booksize,paper,cid,image_w,image_b)" +
+                " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        Object[] params = {book.getBid(),book.getBname(),book.getAuthor(),
+                book.getPrice(),book.getCurrPrice(),book.getDiscount(),
+                book.getPress(),book.getPublishtime(),book.getEdition(),
+                book.getPageNum(),book.getWordNum(),book.getPrinttime(),
+                book.getBooksize(),book.getPaper(), book.getCategory().getCid(),
+                book.getImage_w(),book.getImage_b()};
+        template.update(sql,params);
+    }
 }
