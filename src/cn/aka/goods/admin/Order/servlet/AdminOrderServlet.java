@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/Admin/AdminOrderServlet")
 public class AdminOrderServlet extends BaseServlet {
@@ -25,12 +26,20 @@ public class AdminOrderServlet extends BaseServlet {
         int pageNow = 1;
         String param = req.getParameter("pageNow");
         if(param != null && !param.trim().isEmpty()) {
-            try {
-                pageNow = Integer.parseInt(param);
-            } catch(RuntimeException e) {}
+            pageNow = Integer.parseInt(param);
         }
         return pageNow;
     }
+//    private int getPageNow(HttpServletRequest req) {
+//        int pageNow = 1;
+//        String param = req.getParameter("pageNow");
+//        if(param != null && !param.trim().isEmpty()) {
+//            try {
+//                pageNow = Integer.parseInt(param);
+//            } catch(RuntimeException e) {}
+//        }
+//        return pageNow;
+//    }
 
     /**
      * 截取url，页面中的分页导航中需要使用它做为超链接的目标！
@@ -41,11 +50,20 @@ public class AdminOrderServlet extends BaseServlet {
      * http://localhost:8080/goods/BookServlet?methed=findByCategory&cid=xxx&pageNow=3
      * /goods/BookServlet + methed=findByCategory&cid=xxx&pageNow=3
      */
+//    private String getUrl(HttpServletRequest req) {
+//        String url = req.getRequestURI() + "?" + req.getQueryString();
+//        /*
+//         * 如果url中存在pageNow参数，截取掉，如果不存在那就不用截取。
+//         */
+//        int index = url.lastIndexOf("&pageNow=");
+//        if(index != -1) {
+//            url = url.substring(0, index);
+//        }
+//        return url;
+//    }
     private String getUrl(HttpServletRequest req) {
         String url = req.getRequestURI() + "?" + req.getQueryString();
-        /*
-         * 如果url中存在pageNow参数，截取掉，如果不存在那就不用截取。
-         */
+        //如果url中存在pageNow参数，截取掉，如果不存在那就不用截取。
         int index = url.lastIndexOf("&pageNow=");
         if(index != -1) {
             url = url.substring(0, index);
@@ -62,7 +80,7 @@ public class AdminOrderServlet extends BaseServlet {
      * @throws IOException
      */
     public String findAll(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws ServletException,SQLException {
         /*
          * 1. 得到pageNow：如果页面传递，使用页面的，如果没传，pageNow=1
          */
@@ -93,7 +111,7 @@ public class AdminOrderServlet extends BaseServlet {
      * @throws IOException
      */
     public String findByStatus(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         /*
          * 1. 得到pageNow：如果页面传递，使用页面的，如果没传，pageNow=1
          */
@@ -127,7 +145,7 @@ public class AdminOrderServlet extends BaseServlet {
      * @throws IOException
      */
     public String load(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         String oid = req.getParameter("oid");
         Order order = orderService.load(oid);
         req.setAttribute("order", order);
@@ -158,7 +176,7 @@ public class AdminOrderServlet extends BaseServlet {
         }
         orderService.updateStatus(oid, 5);//设置状态为取消！
         req.setAttribute("code", "success");
-        req.setAttribute("msg", "您的订单已取消，您不后悔吗！");
+        req.setAttribute("msg", "您的订单已取消");
         return "f:/adminjsps/msg.jsp";
     }
 
@@ -184,7 +202,7 @@ public class AdminOrderServlet extends BaseServlet {
         }
         orderService.updateStatus(oid, 3);//设置状态为取消！
         req.setAttribute("code", "success");
-        req.setAttribute("msg", "您的订单已发货，请查看物流，马上确认吧！");
+        req.setAttribute("msg", "您的订单已发货");
         return "f:/adminjsps/msg.jsp";
     }
 }

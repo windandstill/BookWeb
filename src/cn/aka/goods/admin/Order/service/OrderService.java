@@ -8,6 +8,7 @@ import cn.aka.goods.utils.JDBCUtils;
 
 
 import java.sql.SQLException;
+import java.util.Map;
 
 public class OrderService {
     private OrderDao orderDao = new OrderDao();
@@ -32,7 +33,9 @@ public class OrderService {
      */
     public int findStatus(String oid) {
         try {
+
             return orderDao.findStatus(oid);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -43,36 +46,38 @@ public class OrderService {
      * @param oid
      * @return
      */
-    public Order load(String oid) {
-        try {
-            JDBCUtils.beginTransaction();
-            Order order = orderDao.load(oid);
-            JDBCUtils.commitTransaction();
-            return order;
-        } catch (SQLException e) {
-            try {
-                JDBCUtils.rollbackTransaction();
-            } catch (SQLException e1) {}
-            throw new RuntimeException(e);
-        }
+    public Order load(String oid) throws SQLException {
+        return orderDao.load(oid);
+//        try {
+//            JDBCUtils.beginTransaction();
+//            Order order = orderDao.load(oid);
+//            JDBCUtils.commitTransaction();
+//            return order;
+//        } catch (SQLException e) {
+//            try {
+//                JDBCUtils.rollbackTransaction();
+//            } catch (SQLException e1) {}
+//            throw new RuntimeException(e);
+//        }
     }
 
     /**
      * 生成订单
      * @param order
      */
-    public void createOrder(Order order) {
-        try {
-            JDBCUtils.beginTransaction();
-            orderDao.add(order);
-            JDBCUtils.commitTransaction();
-        } catch (SQLException e) {
-            try {
-                JDBCUtils.rollbackTransaction();
-            } catch (SQLException e1) {}
-            throw new RuntimeException(e);
-        }
-    }
+//    public void createOrder(Order order) {
+//
+////        try {
+////            JDBCUtils.beginTransaction();
+////            orderDao.add(order);
+////            JDBCUtils.commitTransaction();
+////        } catch (SQLException e) {
+////            try {
+////                JDBCUtils.rollbackTransaction();
+////            } catch (SQLException e1) {}
+////            throw new RuntimeException(e);
+////        }
+//    }
 
     /**
      * 我的订单
@@ -80,19 +85,20 @@ public class OrderService {
      * @param pageNow
      * @return
      */
-    public PageBean<Order> myOrders(String uid, int pageNow) {
-        try {
-            JDBCUtils.beginTransaction();
-            PageBean<Order> pb = orderDao.findByUser(uid, pageNow);
-            JDBCUtils.commitTransaction();
-            return pb;
-        } catch (SQLException e) {
-            try {
-                JDBCUtils.rollbackTransaction();
-            } catch (SQLException e1) {}
-            throw new RuntimeException(e);
-        }
-    }
+//    public PageBean<Order> myOrders(String uid, int pageNow) {
+//
+////        try {
+////            JDBCUtils.beginTransaction();
+////            PageBean<Order> pb = orderDao.findByUser(uid, pageNow);
+////            JDBCUtils.commitTransaction();
+////            return pb;
+////        } catch (SQLException e) {
+////            try {
+////                JDBCUtils.rollbackTransaction();
+////            } catch (SQLException e1) {}
+////            throw new RuntimeException(e);
+////        }
+//    }
 
     /**
      * 按状态查询
@@ -100,18 +106,19 @@ public class OrderService {
      * @param pageNow
      * @return
      */
-    public PageBean<Order> findByStatus(int status, int pageNow) {
-        try {
-            JDBCUtils.beginTransaction();
-            PageBean<Order> pb = orderDao.findByStatus(status, pageNow);
-            JDBCUtils.commitTransaction();
-            return pb;
-        } catch (SQLException e) {
-            try {
-                JDBCUtils.rollbackTransaction();
-            } catch (SQLException e1) {}
-            throw new RuntimeException(e);
-        }
+    public PageBean<Order> findByStatus(int status, int pageNow) throws SQLException {
+        return  orderDao.findByStatus(status,pageNow);
+//        try {
+//            JDBCUtils.beginTransaction();
+//            PageBean<Order> pb = orderDao.findByStatus(status, pageNow);
+//            JDBCUtils.commitTransaction();
+//            return pb;
+//        } catch (SQLException e) {
+//            try {
+//                JDBCUtils.rollbackTransaction();
+//            } catch (SQLException e1) {}
+//            throw new RuntimeException(e);
+//        }
     }
 
     /**
@@ -119,17 +126,18 @@ public class OrderService {
      * @param pageNow
      * @return
      */
-    public PageBean<Order> findAll(int pageNow) {
-        try {
-            JDBCUtils.beginTransaction();
-            PageBean<Order> pb = orderDao.findAll(pageNow);
-            JDBCUtils.commitTransaction();
-            return pb;
-        } catch (SQLException e) {
-            try {
-                JDBCUtils.rollbackTransaction();
-            } catch (SQLException e1) {}
-            throw new RuntimeException(e);
-        }
+    public PageBean<Order> findAll(int pageNow) throws SQLException {
+        return orderDao.findAll(pageNow);
+//        try {
+//            JDBCUtils.beginTransaction();
+//            PageBean<Order> pb = orderDao.findAll(pageNow);
+//            JDBCUtils.commitTransaction();
+//            return pb;
+//        } catch (SQLException e) {
+//            try {
+//                JDBCUtils.rollbackTransaction();
+//            } catch (SQLException e1) {}
+//            throw new RuntimeException(e);
+//        }
     }
 }

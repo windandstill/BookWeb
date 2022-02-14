@@ -26,7 +26,7 @@
 	<span>管理员：${sessionScope.admin.adminname }</span>
 	<a target="_top" href="<c:url value='/adminjsps/login.jsp'/>">退出</a>
 	<span style="padding-left:50px;">
-		<a href="<c:url value='/adminjsps/admin/category/list.jsp'/>">分类管理</a>
+		<a href="<c:url value='/admin/categoryServlet?method=findAll'/>">分类管理</a>
 		<a href="<c:url value='/adminjsps/admin/book/main.jsp'/>">图书管理</a>
 		<a href="<c:url value='/Admin/AdminOrderServlet?method=findAll'/>">订单管理</a>
 	</span>

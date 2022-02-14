@@ -29,8 +29,8 @@ public class OrderDao {
      */
     public int findStatus(String oid) throws SQLException {
         String sql = "select status from t_order where oid=?";
-        Map<String, Object> map = template.queryForMap(sql,oid);
-        return (Integer.valueOf(oid));
+        Integer status = template.queryForObject(sql,Integer.class,oid);
+        return status;
 
     }
 
@@ -132,6 +132,7 @@ public class OrderDao {
     }
 
     private PageBean<Order> findByCriteria(List<Expression> exprList, int pageNow) throws SQLException {
+
         /*
          * 1. 得到pageSize
          * 2. 得到totalRecords
@@ -142,6 +143,7 @@ public class OrderDao {
          * 1. 得到pageSize
          */
         int pageSize = PageConstants.ORDER_PAGE_SIZE;//每页记录数
+
         /*
          * 2. 通过exprList来生成where子句
          */
@@ -167,18 +169,25 @@ public class OrderDao {
         /*
          * 3. 总记录数
          */
-        String sql = "select count(oid) from goods.t_order" + whereSql;
-        Number number = template.queryForObject(sql,Number.class);
-        int totalRecords = number.intValue();//得到了总记录数
+//        int totalRecords = 0;
+        String sql = "select count(*) from goods.t_order"+whereSql;
+//        List<Order> list =template.query(sql,new BeanPropertyRowMapper<Order>(Order.class),params.toArray());
+          Integer totalRecords = template.queryForObject(sql,Integer.class,params.toArray());
+
+
+////       得到了总记录数
+//        for(Order order :list){
+//           totalRecords++;
+//        }
         /*
          * 4. 得到beanList，即当前页记录
          */
         sql = "select * from goods.t_order" + whereSql + " order by ordertime desc limit ?,?";
+
         params.add((pageNow-1) * pageSize);//当前页首行记录的下标
         params.add(pageSize);//一共查询几行，就是每页记录数
 
-        List<Order> beanList = template.query(sql, new BeanPropertyRowMapper<Order>(Order.class),
-                params.toArray());
+        List<Order> beanList = template.query(sql, new BeanPropertyRowMapper<Order>(Order.class),params.toArray());
         // 虽然已经获取所有的订单，但每个订单中并没有订单条目。
         // 遍历每个订单，为其加载它的所有订单条目
         for(Order order : beanList) {
