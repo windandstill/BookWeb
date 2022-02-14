@@ -20,7 +20,21 @@ public class BookDaoImp implements BookDao {
     @Override
     public Book findByBid(String bid) {
         String sql = "SELECT * FROM goods.t_book b , goods.t_category c  WHERE b.cid=c.cid AND b.bid=?";
-        return template.queryForObject(sql, new BeanPropertyRowMapper<>(Book.class), bid);
+        // 一行记录中，包含了很多的book的属性，还有一个cid属性
+        Map<String, Object> map = template.queryForMap(sql, bid);
+        // 把Map中除了cid以外的其他属性映射到Book对象中
+        Book book = CommonUtils.toBean(map, Book.class);
+        // 把Map中cid属性映射到Category中，即这个Category只有cid
+        Category category = CommonUtils.toBean(map, Category.class);
+        // 两者建立关系
+        book.setCategory(category);
+        // 把pid获取出来，创建一个Category parnet，把pid赋给它，然后再把parent赋给category
+        if(map.get("pid") != null) {
+            Category parent = new Category();
+            parent.setCid((String)map.get("pid"));
+            category.setParent(parent);
+        }
+        return book;
     }
 
     /**

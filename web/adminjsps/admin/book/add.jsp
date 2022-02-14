@@ -142,7 +142,6 @@ function loadChildren() {
 					<c:forEach items="${parents}" var="parent">
 						<option value="${parent.cid}"/>${parent.cname}</option>
 					</c:forEach>
-
 					</select>
 				</td>
 				<td>

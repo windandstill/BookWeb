@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import static sun.plugin2.util.PojoUtil.toJson;
 
 @WebServlet("/admin/bookServlet")
 public class BookServlet extends BaseServlet {
@@ -42,10 +41,14 @@ public class BookServlet extends BaseServlet {
          * 删除图片
          */
         Book book = bookService.load(bid);
-        String savepath = req.getServletContext().getRealPath("/");//获取真实的路径
-        new File(savepath, book.getImage_w()).delete();//删除文件
-        new File(savepath, book.getImage_b()).delete();//删除文件
-        bookService.delete(bid);//删除数据库的记录
+        //获取真实的路径
+        String savepath = req.getServletContext().getRealPath("/");
+        //删除文件
+        new File(savepath, book.getImage_w()).delete();
+        //删除文件
+        new File(savepath, book.getImage_b()).delete();
+        //删除数据库的记录
+        bookService.delete(bid);
         req.setAttribute("msg", "删除图书成功！");
         return "f:/adminjsps/msg.jsp";
     }
@@ -128,13 +131,20 @@ public class BookServlet extends BaseServlet {
     }
 
     /**
-     * 按bid查询图书
+     * 按bid查询图书 加载图书
      */
-    public String load(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public String load(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        //1. 获取bid，得到Book对象，保存之
         String bid = req.getParameter("bid");
-        Book book = bookService.findByBid(bid);
-        //5. 给PageBean设置url，保存PageBean，转发到/jsps/book/list.jsp
+        Book book = bookService.load(bid);
         req.setAttribute("book", book);
+        // 2. 获取所有一级分类，保存之
+        req.setAttribute("parents", categoryService.findParents());
+        //3. 获取当前图书所属的一级分类下所有2级分类
+        String pid = book.getCategory().getParent().getCid();
+        req.setAttribute("children", categoryService.findChildren(pid));
+        //4. 转发到desc.jsp显示
         return "f:/adminjsps/admin/book/desc.jsp";
     }
     /**
