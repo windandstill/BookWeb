@@ -1,16 +1,18 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript">
-	function _go() {
-		var pageNow = $("#pageCode").val();//获取文本框中的当前页码
-		if(!/^[1-9]\d*$/.test(pageNow)) {//对当前页码进行整数校验
-			alert('请输入正确的页码！');
-			return;
-		}
-		if(pageNow > ${pb.pageCount}) {//判断当前页码是否大于最大页
-			alert('请输入正确的页码！');
-			return;
-		}
+<%--<script type="text/javascript">--%>
+<script type="text/javascript" src="<c:url value='/jquery/jquery-1.5.1.js'/>"></script>
+<script>
+function _go() {
+        var pageNow = $("#pageCode").val();//获取文本框中的当前页码
+        if(!/^[1-9]\d*$/.test(pageNow)) {//对当前页码进行整数校验
+            alert('请输入正确的页码！');
+            return;
+        }
+        if(pageNow > ${pb.pageCount}) {//判断当前页码是否大于最大页
+            alert('请输入正确的页码！');
+            return;
+        }
         location = "${pb.url}&pageNow=" + pageNow;
 	}
 </script>
@@ -71,7 +73,7 @@
             <c:otherwise><a href="${pb.url}&pageNow=${pb.pageNow+1}" class="aBtn bold">下一页</a></c:otherwise>
         </c:choose>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    
+
     <%-- 共N页 到M页 --%>
     <span>共${pb.pageCount}页</span>
     <span>到</span>

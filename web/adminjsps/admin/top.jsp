@@ -28,7 +28,7 @@
 	<span style="padding-left:50px;">
 		<a href="<c:url value='/admin/categoryServlet?method=findAll'/>">分类管理</a>
 		<a href="<c:url value='/adminjsps/admin/book/main.jsp'/>">图书管理</a>
-		<a href="<c:url value='/adminjsps/admin/order/list.jsp'/>">订单管理</a>
+		<a href="<c:url value='/Admin/AdminOrderServlet?method=findAll'/>">订单管理</a>
 	</span>
 </div>
   </body>

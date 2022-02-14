@@ -11,7 +11,7 @@ public class PageBean<T> {
 	private int pageSize;//每页记录数
 	private String url;//请求路径和参数，例如：/BookServlet?method=findXXX&cid=1&bname=2
 	private List<T> beanList;
-	
+
 	// 计算总页数
 	public int getPageCount() {
 		int pageCount = totalRecords / pageSize;

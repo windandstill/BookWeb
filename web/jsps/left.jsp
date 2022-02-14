@@ -37,8 +37,8 @@
         });
     </script>
 </head>
-  
-<body>  
+
+<body>
   <div id="menu"></div>
 </body>
 </html>
