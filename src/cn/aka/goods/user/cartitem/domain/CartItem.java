@@ -14,11 +14,12 @@ public class CartItem {
     // 添加小计方法
     public double getSubtotal() {
         /*
-         * 使用BigDecimal不会有误差
-         * 要求必须使用String类型构造器
+         * 使用BigDecimal不会有误差 在JavaSe 的 Number中国
+         * 要求必须使用String类型构造器 double类型小数计算有问题
          */
         BigDecimal b1 = new BigDecimal(book.getCurrPrice() + "");
         BigDecimal b2 = new BigDecimal(quantity + "");
+        //单价*数量
         BigDecimal b3 = b1.multiply(b2);
         return b3.doubleValue();
     }
@@ -55,7 +56,7 @@ public class CartItem {
         this.user = user;
     }
 
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
         System.out.println(2.0-1.1);//0.8999999999999999
-    }
+    }*/
 }

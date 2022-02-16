@@ -10,6 +10,7 @@ public class SetEncodingFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
 
+    @Override
     public void destroy() {
     }
 

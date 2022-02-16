@@ -26,7 +26,7 @@ a {text-decoration: none;}
   
   <body>
     <h1>欢迎进入网上书城系统</h1>
-    <a href="http://www.itcast.cn/" target="_top">
+    <%--<a href="http://www.itcast.cn/" target="_top">
       <img src="http://localhost:8080/goods/images/itcast_link.gif" border="0" style="border:1px #DCD8D7 solid;"/>
     </a>
     <br/>
@@ -35,6 +35,6 @@ a {text-decoration: none;}
     </a>
     <a href="http://www.csdn.net/" target="_top">
       <img src="http://localhost:8080/goods/images/csdn.jpg" border="0"/>
-    </a>
+    </a>--%>
   </body>
 </html>
