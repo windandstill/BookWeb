@@ -4,10 +4,10 @@ $(function() {
 	 */
 	$("#submit").hover(
 		function() {
-			$("#submit").attr("src", "/goods/images/login2.jpg");
+			$("#submit").attr("src", "/BookWeb/images/login2.jpg");
 		},
 		function() {
-			$("#submit").attr("src", "/goods/images/login1.jpg");
+			$("#submit").attr("src", "/BookWeb/images/login1.jpg");
 		}
 	);
 	
@@ -48,9 +48,9 @@ $(function() {
  * 例如input名称为：loginname，那么调用validateLoginname()方法。
  */
 function invokeValidateFunction(inputName) {
-	inputName = inputName.substring(0, 1).toUpperCase() + inputName.substring(1);
+	inputName = inputName.substring(0, 1).toUpperCase() + inputName.substring(1)+"()";
 	var functionName = "validate" + inputName;
-	return eval(functionName + "()");	
+	return eval(functionName);
 }
 
 /*
@@ -112,8 +112,8 @@ function validateVerifyCode() {
 			async: false,
 			type: "POST",
 			dataType: "json",
-			data: {method: "validateVerifyCode", verifyCode: value},
-			url: "/goods/UserServlet",
+			data: {method: "ajaxValidateVerifyCode", verifyCode: value},
+			url: "/BookWeb/user/userServlet",
 			success: function(flag) {
 				if(!flag) {
 					$("#verifyCodeError").css("display", "");
@@ -124,4 +124,12 @@ function validateVerifyCode() {
 		});
 	}
 	return bool;
+}
+function _yzm() {
+	/*
+	 * 1. 获取<img>元素
+	 * 2. 重新设置它的src
+	 * 3. 使用毫秒来添加参数
+	 */
+	$("#imgVerifyCode").attr("src", "/BookWeb/VerifyCodeServlet?a=" + new Date().getTime());
 }
