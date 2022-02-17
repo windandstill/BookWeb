@@ -51,7 +51,7 @@ public class CartItemDaoImp implements CartItemDao {
      */
     @Override
     public List<CartItem> findByUser(String uid) {
-        String sql = "SELECT * FROM t_cartitem c, t_book b Where c.bid=b.bid and uid=? order by orderBy";
+        String sql = "SELECT * FROM t_cartitem c, t_book b Where c.bid=b.bid and uid=? order by c.orderBy";
         List<Map<String, Object>> mapList = template.queryForList(sql, uid);
         return toCartItemList(mapList);
     }

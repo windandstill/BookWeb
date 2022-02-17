@@ -162,10 +162,10 @@ function showTotal() {
 			<input value="12345" type="checkbox" name="checkboxBtn" checked="checked"/>
 		</td>
 		<td align="left" width="70px">
-			<a class="linkImage" href="<c:url value='/jsps/book/desc.jsp'/>"><img border="0" width="54" align="top" src="<c:url value='${cartItem.book.image_b}'/>"/></a>
+			<a class="linkImage" href="<c:url value='/jsps/book/desc.jsp'/>"><img border="0" width="54" align="top" src="<c:url value='/${cartItem.book.image_b}'/>"/></a>
 		</td>
 		<td align="left" width="400px">
-		    <a href="<c:url value='/jsps/book/desc.jsp'/>"><span>${initParam.book.bname}</span></a>
+		    <a href="<c:url value='/jsps/book/desc.jsp'/>"><span>${cartItem.book.bname}</span></a>
 		</td>
 		<td><span>&yen;<span class="currPrice" id="12345CurrPrice">${cartItem.book.currPrice}</span></span></td>
 		<td>
