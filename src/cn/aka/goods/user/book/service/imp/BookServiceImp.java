@@ -34,27 +34,27 @@ public class BookServiceImp implements BookService {
     }
 
     @Override
-    public PageBean<Book> findByCategory(String cid, int pageNow) throws SQLException {
+    public PageBean<Book> findByCategory(String cid, int pageNow) {
         return bookDao.findByCategory(cid,pageNow);
     }
 
     @Override
-    public PageBean<Book> findByAuthor(String author, int pageNow) throws SQLException {
+    public PageBean<Book> findByAuthor(String author, int pageNow)  {
         return bookDao.findByAuthor(author,pageNow);
     }
 
     @Override
-    public PageBean<Book> findByPress(String press, int pageNow) throws SQLException {
+    public PageBean<Book> findByPress(String press, int pageNow)  {
         return bookDao.findByPress(press,pageNow);
     }
 
     @Override
-    public PageBean<Book> findByBname(String bname, int pageNow) throws SQLException {
+    public PageBean<Book> findByBname(String bname, int pageNow)  {
         return bookDao.findByBname(bname,pageNow);
     }
 
     @Override
-    public PageBean<Book> findByCombination(Book book, int pageNow) throws SQLException {
+    public PageBean<Book> findByCombination(Book book, int pageNow) {
         return bookDao.findByCombination(book,pageNow);
     }
 

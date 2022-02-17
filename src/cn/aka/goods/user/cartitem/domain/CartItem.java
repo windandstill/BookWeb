@@ -12,7 +12,7 @@ public class CartItem {
     private User user;// 所属用户
 
     // 添加小计方法
-    public double getSubtotal() {
+    public double getSubTotal() {
         /*
          * 使用BigDecimal不会有误差 在JavaSe 的 Number中国
          * 要求必须使用String类型构造器 double类型小数计算有问题

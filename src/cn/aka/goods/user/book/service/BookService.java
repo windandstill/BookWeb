@@ -19,15 +19,15 @@ public interface BookService {
      */
     void delete(String bid);
 
-    PageBean<Book> findByCategory(String cid, int pageNow) throws SQLException;
+    PageBean<Book> findByCategory(String cid, int pageNow) ;
 
-    PageBean<Book> findByAuthor(String author, int pc) throws SQLException;
+    PageBean<Book> findByAuthor(String author, int pc) ;
 
-    PageBean<Book> findByPress(String press, int pageNow) throws SQLException;
+    PageBean<Book> findByPress(String press, int pageNow) ;
 
-    PageBean<Book> findByBname(String bname, int pageNow) throws SQLException;
+    PageBean<Book> findByBname(String bname, int pageNow) ;
 
-    PageBean<Book> findByCombination(Book book, int pageNow) throws SQLException;
+    PageBean<Book> findByCombination(Book book, int pageNow) ;
 
     Book findByBid(String bid);
 

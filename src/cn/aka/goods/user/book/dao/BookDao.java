@@ -28,27 +28,27 @@ public interface BookDao {
     /**
      * 按分类查询
      */
-    PageBean<Book> findByCategory(String cid, int pageNow) throws SQLException;
+    PageBean<Book> findByCategory(String cid, int pageNow) ;
 
     /**
      * 按书名模糊查询
      */
-    PageBean<Book> findByBname(String bname, int pageNow) throws SQLException;
+    PageBean<Book> findByBname(String bname, int pageNow) ;
 
     /**
      * 按作者查
      */
-    PageBean<Book> findByAuthor(String author, int pageNow) throws SQLException;
+    PageBean<Book> findByAuthor(String author, int pageNow) ;
 
     /**
      * 按出版社查
      */
-    PageBean<Book> findByPress(String press, int pageNow) throws SQLException;
+    PageBean<Book> findByPress(String press, int pageNow) ;
 
     /**
      * 多条件组合查询
      */
-    PageBean<Book> findByCombination(Book criteria, int pageNow) throws SQLException;
+    PageBean<Book> findByCombination(Book criteria, int pageNow) ;
 
     /**
      * 查询指定分类下图书个数

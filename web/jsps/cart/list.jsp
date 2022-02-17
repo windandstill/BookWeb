@@ -156,67 +156,29 @@ function showTotal() {
 
 
 
-
+<c:forEach items="${cartItemList}" var="cartItem">
 	<tr align="center">
 		<td align="left">
 			<input value="12345" type="checkbox" name="checkboxBtn" checked="checked"/>
 		</td>
 		<td align="left" width="70px">
-			<a class="linkImage" href="<c:url value='/jsps/book/desc.jsp'/>"><img border="0" width="54" align="top" src="<c:url value='/book_img/23254532-1_b.jpg'/>"/></a>
+			<a class="linkImage" href="<c:url value='/jsps/book/desc.jsp'/>"><img border="0" width="54" align="top" src="<c:url value='${cartItem.book.image_b}'/>"/></a>
 		</td>
 		<td align="left" width="400px">
-		    <a href="<c:url value='/jsps/book/desc.jsp'/>"><span>Spring实战(第3版)（In Action系列中最畅销的Spring图书，近十万读者学习Spring的共同选择）</span></a>
+		    <a href="<c:url value='/jsps/book/desc.jsp'/>"><span>${initParam.book.bname}</span></a>
 		</td>
-		<td><span>&yen;<span class="currPrice" id="12345CurrPrice">40.7</span></span></td>
+		<td><span>&yen;<span class="currPrice" id="12345CurrPrice">${cartItem.book.currPrice}</span></span></td>
 		<td>
-			<a class="jian" id="12345Jian"></a><input class="quantity" readonly="readonly" id="12345Quantity" type="text" value="1"/><a class="jia" id="12345Jia"></a>
+			<a class="jian" id="12345Jian"></a><input class="quantity" readonly="readonly" id="12345Quantity" type="text" value="${cartItem.quantity}"/><a class="jia" id="12345Jia"></a>
 		</td>
 		<td width="100px">
-			<span class="price_n">&yen;<span class="subTotal" id="12345Subtotal">40.7</span></span>
+			<span class="price_n">&yen;<span class="subTotal" id="12345Subtotal">${cartItem.subTotal}</span></span>
 		</td>
 		<td>
 			<a href="<c:url value='/jsps/cart/list.jsp'/>">删除</a>
 		</td>
 	</tr>
-
-
-
-
-
-	<tr align="center">
-		<td align="left">
-			<input value="12346" type="checkbox" name="checkboxBtn" checked="checked"/>
-		</td>
-		<td align="left" width="70px">
-			<a class="linkImage" href="<c:url value='/jsps/book/desc.jsp'/>"><img border="0" width="54" align="top" src="<c:url value='/book_img/23254532-1_b.jpg'/>"/></a>
-		</td>
-		<td align="left" width="400px">
-		    <a href="<c:url value='/jsps/book/desc.jsp'/>"><span>Spring实战(第3版)（In Action系列中最畅销的Spring图书，近十万读者学习Spring的共同选择）</span></a>
-		</td>
-		<td><span>&yen;<span class="currPrice" id="12346CurrPrice">40.7</span></span></td>
-		<td>
-			<a class="jian" id="12346Jian"></a><input class="quantity" readonly="readonly" id="12346Quantity" type="text" value="1"/><a class="jia" id="12346Jia"></a>
-		</td>
-		<td width="100px">
-			<span class="price_n">&yen;<span class="subTotal" id="12346Subtotal">40.7</span></span>
-		</td>
-		<td>
-			<a href="<c:url value='/jsps/cart/list.jsp'/>">删除</a>
-		</td>
-	</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
+</c:forEach>
 
 	
 	<tr>

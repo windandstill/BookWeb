@@ -7,6 +7,7 @@ import java.io.IOException;
 
 @WebFilter("/*")
 public class SetEncodingFilter implements Filter {
+    @Override
     public void init(FilterConfig config) throws ServletException {
     }
 

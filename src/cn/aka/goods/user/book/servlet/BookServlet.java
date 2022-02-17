@@ -25,6 +25,7 @@ public class BookServlet extends BaseServlet {
         }
         return pageNow;
     }
+
     /**
      * 截取url，页面中的分页导航中需要使用它做为超链接的目标！
      * http://localhost:8080/goods/BookServlet?methed=findByCategory&cid=xxx&pc=3
@@ -43,7 +44,7 @@ public class BookServlet extends BaseServlet {
     /**
      * 按bid查询图书
      */
-    public String load(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public String load(HttpServletRequest req, HttpServletResponse resp) {
         String bid = req.getParameter("bid");
         Book book = bookService.findByBid(bid);
         //5. 给PageBean设置url，保存PageBean，转发到/jsps/book/list.jsp
@@ -53,7 +54,7 @@ public class BookServlet extends BaseServlet {
     /**
      * 按分类查
      */
-    public String findByCategory(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public String findByCategory(HttpServletRequest req, HttpServletResponse resp){
         //1. 得到pageNow：如果页面传递，使用页面的，如果没传，pageNow=1
         int pageNow = getPageNow(req);
         //2. 得到url：...
@@ -71,7 +72,7 @@ public class BookServlet extends BaseServlet {
     /**
      *按作者查
      */
-    public String findByAuthor(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public String findByAuthor(HttpServletRequest req, HttpServletResponse resp) {
         //1. 得到pageNow：如果页面传递，使用页面的，如果没传，pageNow=1
         int pageNow = getPageNow(req);
         //2. 得到url：...
@@ -83,10 +84,11 @@ public class BookServlet extends BaseServlet {
         req.setAttribute("pb", pb);
         return "f:/jsps/book/list.jsp";
     }
+
     /**
      *按出版社查
      */
-    public String findByPress(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public String findByPress(HttpServletRequest req, HttpServletResponse resp) {
         //1. 得到pageNow：如果页面传递，使用页面的，如果没传，pageNow=1
         int pageNow = getPageNow(req);
         //2. 得到url：...
@@ -98,10 +100,11 @@ public class BookServlet extends BaseServlet {
         req.setAttribute("pb", pb);
         return "f:/jsps/book/list.jsp";
     }
+
     /**
      * 按书名查
      */
-    public String findByBname(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public String findByBname(HttpServletRequest req, HttpServletResponse resp)  {
         //1. 得到pageNow：如果页面传递，使用页面的，如果没传，pageNow=1
         int pageNow = getPageNow(req);
         //2. 得到url：...
@@ -113,10 +116,11 @@ public class BookServlet extends BaseServlet {
         req.setAttribute("pb", pb);
         return "f:/jsps/book/list.jsp";
     }
+
     /**
      * 组合查询
      */
-    public String findByCombination(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public String findByCombination(HttpServletRequest req, HttpServletResponse resp) {
         //1. 得到pageNow：如果页面传递，使用页面的，如果没传，pageNow=1
         int pageNow = getPageNow(req);
         //2. 得到url：...
