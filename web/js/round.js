@@ -1,4 +1,5 @@
-function round(num,dec){ 
+//保留小数位
+function round(num,dec){
     var strNum = num + '';/*把要转换的小数转换成字符串*/
     var index = strNum.indexOf("."); /*获取小数点的位置*/
     if(index < 0) {
