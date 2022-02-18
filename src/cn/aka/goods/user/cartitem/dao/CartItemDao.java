@@ -2,6 +2,7 @@ package cn.aka.goods.user.cartitem.dao;
 
 import cn.aka.goods.user.cartitem.domain.CartItem;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface CartItemDao {
@@ -36,4 +37,9 @@ public interface CartItemDao {
      * 按id查询
      */
     CartItem findByCartItemId(String cartItemId);
+
+    /**
+     * 加载多个CartItem
+     */
+    List<CartItem> loadCartItems(String cartItemIds);
 }

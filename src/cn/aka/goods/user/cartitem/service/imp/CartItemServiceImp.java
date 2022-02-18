@@ -51,8 +51,16 @@ public class CartItemServiceImp implements CartItemService {
      * 修改条目数量
      */
     @Override
-    public CartItem updateQuantity(String cartItemId,int quantity){
+    public CartItem updateQuantity(String cartItemId, int quantity){
         cartItemDao.updateQuantity(cartItemId,quantity);
         return cartItemDao.findByCartItemId(cartItemId);
+    }
+
+    /**
+     * 加载多个CartItem
+     */
+    @Override
+    public List<CartItem> loadCartItems(String cartItemIds){
+       return cartItemDao.loadCartItems(cartItemIds);
     }
 }

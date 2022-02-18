@@ -110,7 +110,7 @@ public class CartItemDaoImp implements CartItemDao {
         template.update(sql,cartItemIdArray);
 
     }
-   /* private String toWhereSql(int len){
+    private String toWhereSql(int len){
         StringBuilder sb = new StringBuilder("cartItemId in(");
         for (int i = 0; i < len; i++) {
             sb.append("?");
@@ -119,7 +119,7 @@ public class CartItemDaoImp implements CartItemDao {
             }
         }
         return sb.toString();
-    }*/
+    }
 
     /**
      * 按id查询
@@ -129,5 +129,28 @@ public class CartItemDaoImp implements CartItemDao {
         String sql = "select * from t_cartItem c, t_book b where c.bid=b.bid and c.cartItemId=?";
         Map<String,Object> map = template.queryForMap(sql,cartItemId);
         return toCartIem(map);
+    }
+
+
+    /**
+     * 加载多个CartItem
+     */
+    @Override
+    public List<CartItem> loadCartItems(String cartItemIds){
+         //1. 把cartItemIds转换成数组
+        Object[] cartItemIdArray = cartItemIds.split(",");
+        //2.拼装sql
+        StringBuilder sb = new StringBuilder("cartItemId in(");
+        for (int i = 0; i < cartItemIdArray.length; i++) {
+            sb.append("?");
+            if (i < cartItemIdArray.length-1){
+                sb.append(",");
+            }
+        }
+        sb.append(")");
+         //3. 生成sql语句
+        String sql = "select * from t_cartitem c, t_book b where c.bid=b.bid and " + sb;
+         //4. 执行sql，返回List<CartItem>
+        return toCartItemList(template.queryForList(sql,cartItemIdArray));
     }
 }

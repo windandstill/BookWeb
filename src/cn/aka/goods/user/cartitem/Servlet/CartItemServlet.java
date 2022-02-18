@@ -8,6 +8,7 @@ import cn.aka.goods.user.user.domain.User;
 import cn.aka.goods.utils.BaseServlet;
 import cn.itcast.commons.CommonUtils;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -75,5 +76,26 @@ public class CartItemServlet extends BaseServlet {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 加载多个CartItem
+     * @param req
+     * @param resp
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
+    public String loadCartItems(HttpServletRequest req, HttpServletResponse resp) {
+         //1. 获取cartItemIds参数
+        String cartItemIds = req.getParameter("cartItemIds");
+        double total = Double.parseDouble(req.getParameter("total"));
+         //2. 通过service得到List<CartItem>
+        List<CartItem> cartItemList = cartItemService.loadCartItems(cartItemIds);
+         //3. 保存，然后转发到/cart/showitem.jsp
+        req.setAttribute("cartItemList", cartItemList);
+        req.setAttribute("total", total);
+        req.setAttribute("cartItemIds", cartItemIds);
+        return "f:/jsps/cart/showitem.jsp";
     }
 }

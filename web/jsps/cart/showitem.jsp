@@ -51,43 +51,21 @@
 		<td>小计</td>
 	</tr>
 
-
-
+	<c:forEach items="${cartItemList}" var="cartItem">
 	<tr align="center">
 		<td align="right">
-			<a class="linkImage" href="<c:url value='/jsps/book/desc.jsp'/>"><img border="0" width="54" align="top" src="<c:url value='/book_img/23254532-1_b.jpg'/>"/></a>
+			<a class="linkImage" href="<c:url value='/user/bookServlet?method=load&bid=${cartItem.book.bid}'/>"><img border="0" width="54" align="top" src="<c:url value='/${cartItem.book.image_b }'/>"/></a>
 		</td>
 		<td align="left">
-			<a href="<c:url value='/jsps/book/desc.jsp'/>"><span>Spring实战(第3版)（In Action系列中最畅销的Spring图书，近十万读者学习Spring的共同选择）</span></a>
+			<a href="<c:url value='/user/bookServlet?method=load&bid=${cartItem.book.bid}'/>"><span>${cartItem.book.bname }</span></a>
 		</td>
-		<td>&yen;40.7</td>
-		<td>1</td>
+		<td>&yen;${cartItem.book.currPrice }</td>
+		<td>${cartItem.quantity }</td>
 		<td>
-			<span class="price_n">&yen;<span class="subtotal">40.7</span></span>
+			<span class="price_n">&yen;<span class="subtotal">${cartItem.subTotal }</span></span>
 		</td>
 	</tr>
-	
-	
-	
-	
-	<tr align="center">
-		<td align="right">
-			<a class="linkImage" href="<c:url value='/jsps/book/desc.jsp'/>"><img border="0" width="54" align="top" src="<c:url value='/book_img/23254532-1_b.jpg'/>"/></a>
-		</td>
-		<td align="left">
-			<a href="<c:url value='/jsps/book/desc.jsp'/>"><span>Spring实战(第3版)（In Action系列中最畅销的Spring图书，近十万读者学习Spring的共同选择）</span></a>
-		</td>
-		<td>&yen;40.7</td>
-		<td>1</td>
-		<td>
-			<span class="price_n">&yen;<span class="subtotal">40.7</span></span>
-		</td>
-	</tr>
-
-
-
-
-
+	</c:forEach>
 
 	<tr>
 		<td colspan="6" align="right">

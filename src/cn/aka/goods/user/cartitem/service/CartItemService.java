@@ -32,4 +32,9 @@ public interface CartItemService {
      * 修改条目数量
      */
     CartItem updateQuantity(String cartItemId, int quantity);
+
+    /**
+     * 加载多个CartItem
+     */
+    List<CartItem> loadCartItems(String cartItemIds);
 }
