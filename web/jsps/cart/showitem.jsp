@@ -34,58 +34,73 @@
 	});
 </script>
   </head>
-  
+
   <body>
-<form id="form1" action="<c:url value='/jsps/order/ordersucc.jsp'/>" method="post">
-	<input type="hidden" name="cartItemIds" value=""/>
-	<input type="hidden" name="method" value=""/>
-<table width="95%" align="center" cellpadding="0" cellspacing="0">
-	<tr bgcolor="#efeae5">
-		<td width="400px" colspan="5"><span style="font-weight: 900;">生成订单</span></td>
-	</tr>
-	<tr align="center">
-		<td width="10%">&nbsp;</td>
-		<td width="50%">图书名称</td>
-		<td>单价</td>
-		<td>数量</td>
-		<td>小计</td>
-	</tr>
+  <c:choose>
+	  <c:when test="${empty cartItemList }">嘻嘻~</c:when>
+	  <c:otherwise>
+		  <form id="form1" action="<c:url value='/user/OrderServlet'/>" method="post">
+			  <input type="hidden" name="cartItemIds" value="${cartItemIds }"/>
+			  <input type="hidden" name="method" value="createOrder"/>
+			  <table width="95%" align="center" cellpadding="0" cellspacing="0">
+				  <tr bgcolor="#efeae5">
+					  <td width="400px" colspan="5"><span style="font-weight: 900;">生成订单</span></td>
+				  </tr>
+				  <tr align="center">
+					  <td width="10%">&nbsp;</td>
+					  <td width="50%">图书名称</td>
+					  <td>单价</td>
+					  <td>数量</td>
+					  <td>小计</td>
+				  </tr>
 
-	<c:forEach items="${cartItemList}" var="cartItem">
-	<tr align="center">
-		<td align="right">
-			<a class="linkImage" href="<c:url value='/user/bookServlet?method=load&bid=${cartItem.book.bid}'/>"><img border="0" width="54" align="top" src="<c:url value='/${cartItem.book.image_b }'/>"/></a>
-		</td>
-		<td align="left">
-			<a href="<c:url value='/user/bookServlet?method=load&bid=${cartItem.book.bid}'/>"><span>${cartItem.book.bname }</span></a>
-		</td>
-		<td>&yen;${cartItem.book.currPrice }</td>
-		<td>${cartItem.quantity }</td>
-		<td>
-			<span class="price_n">&yen;<span class="subtotal">${cartItem.subTotal }</span></span>
-		</td>
-	</tr>
-	</c:forEach>
 
-	<tr>
-		<td colspan="6" align="right">
-			<span>总计：</span><span class="price_t">&yen;<span id="total"></span></span>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="5" bgcolor="#efeae5"><span style="font-weight: 900">收货地址</span></td>
-	</tr>
-	<tr>
-		<td colspan="6">
-			<input id="addr" type="text" name="address" value="北京市 昌平区 西三旗 金燕龙办公楼1层 传智播客 张三爷"/>
-		</td>
-	</tr>
-	<tr>
-		<td style="border-top-width: 4px;" colspan="5" align="right">
-			<a id="linkSubmit" href="javascript:$('#form1').submit();">提交订单</a>
-		</td>
-	</tr>
-</table>
-</form>
+				  <c:forEach items="${cartItemList }" var="cartItem">
+					  <tr align="center">
+						  <td align="right">
+							  <a class="linkImage" href="<c:url value='/jsps/book/desc.jsp'/>"><img border="0" width="54" align="top" src="<c:url value='/${cartItem.book.image_b }'/>"/></a>
+						  </td>
+						  <td align="left">
+							  <a href="<c:url value='/jsps/book/desc.jsp'/>"><span>${cartItem.book.bname }</span></a>
+						  </td>
+						  <td>&yen;${cartItem.book.currPrice }</td>
+						  <td>${cartItem.quantity }</td>
+						  <td>
+							  <span class="price_n">&yen;<span class="subTotal">${cartItem.subTotal }</span></span>
+						  </td>
+					  </tr>
+				  </c:forEach>
+
+
+
+
+
+
+
+
+
+
+				  <tr>
+					  <td colspan="6" align="right">
+						  <span>总计：</span><span class="price_t">&yen;<span id="total">${total }</span></span>
+					  </td>
+				  </tr>
+				  <tr>
+					  <td colspan="5" bgcolor="#efeae5"><span style="font-weight: 900">收货地址</span></td>
+				  </tr>
+				  <tr>
+					  <td colspan="6">
+						  <input id="addr" type="text" name="address" value="北京市 昌平区 西三旗 金燕龙办公楼1层 传智播客 张三爷"/>
+					  </td>
+				  </tr>
+				  <tr>
+					  <td style="border-top-width: 4px;" colspan="5" align="right">
+						  <a id="linkSubmit" href="javascript:$('#form1').submit();">提交订单</a>
+					  </td>
+				  </tr>
+			  </table>
+		  </form>
+	  </c:otherwise>
+  </c:choose>
   </body>
 </html>
