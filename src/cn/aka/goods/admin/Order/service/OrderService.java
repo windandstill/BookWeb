@@ -65,7 +65,13 @@ public class OrderService {
      * 生成订单
      * @param order
      */
-//    public void createOrder(Order order) {
+    public void createOrder(Order order) {
+        try {
+            orderDao.add(order);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 //
 ////        try {
 ////            JDBCUtils.beginTransaction();
@@ -85,7 +91,9 @@ public class OrderService {
      * @param pageNow
      * @return
      */
-//    public PageBean<Order> myOrders(String uid, int pageNow) {
+    public PageBean<Order> myOrders(String uid, int pageNow) throws SQLException {
+        return orderDao.findByUser(uid,pageNow);
+    }
 //
 ////        try {
 ////            JDBCUtils.beginTransaction();

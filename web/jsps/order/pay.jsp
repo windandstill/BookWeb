@@ -32,7 +32,7 @@ $(function() {
 	<span class="spanPrice">Ö§¸¶½ð¶î£º</span><span class="price_t">&yen;203.5</span>
 	<span class="spanOid">±àºÅ£ºE3A1EB6D0543489F9729B2B5BC5DB365</span>
 </div>
-<form action="<c:url value='/OrderServlet'/>" method="post" id="form1" target="_top">
+<form action="<c:url value='user/OrderServlet'/>" method="post" id="form1" target="_top">
 <input type="hidden" name="method" value=""/>
 <input type="hidden" name="oid" value=""/>
 <div class="divBank">
