@@ -86,15 +86,13 @@ public class OrderDao {
          */
         sql = "insert into t_orderitem values(?,?,?,?,?,?,?,?)";
         int len = order.getOrderItemList().size();
-        Object[][] objs = new Object[len][];
         for(int i = 0; i < len; i++){
             OrderItem item = order.getOrderItemList().get(i);
-            objs[i] = new Object[]{item.getOrderItemId(),item.getQuantity(),
+            template.update(sql, item.getOrderItemId(),item.getQuantity(),
                     item.getSubtotal(),item.getBook().getBid(),
                     item.getBook().getBname(),item.getBook().getCurrPrice(),
-                    item.getBook().getImage_b(),order.getOid()};
+                    item.getBook().getImage_b(),order.getOid());
         }
-        template.batchUpdate(sql, String.valueOf(objs));
     }
 
     /**
@@ -131,6 +129,13 @@ public class OrderDao {
         return findByCriteria(exprList, pageNow);
     }
 
+    /**
+     * 分页
+     * @param exprList
+     * @param pageNow
+     * @return
+     * @throws SQLException
+     */
     private PageBean<Order> findByCriteria(List<Expression> exprList, int pageNow) throws SQLException {
 
         /*
@@ -139,14 +144,10 @@ public class OrderDao {
          * 3. 得到beanList
          * 4. 创建PageBean，返回
          */
-        /*
-         * 1. 得到pageSize
-         */
+         //1. 得到pageSize
         int pageSize = PageConstants.ORDER_PAGE_SIZE;//每页记录数
 
-        /*
-         * 2. 通过exprList来生成where子句
-         */
+         //2. 通过exprList来生成where子句
         StringBuilder whereSql = new StringBuilder(" where 1=1");
         List<Object> params = new ArrayList<Object>();//SQL中有问号，它是对应问号的值
         for(Expression expr : exprList) {
@@ -166,9 +167,7 @@ public class OrderDao {
             }
         }
 
-        /*
-         * 3. 总记录数
-         */
+        //3. 总记录数
 //        int totalRecords = 0;
         String sql = "select count(*) from goods.t_order"+whereSql;
 //        List<Order> list =template.query(sql,new BeanPropertyRowMapper<Order>(Order.class),params.toArray());
@@ -179,10 +178,8 @@ public class OrderDao {
 //        for(Order order :list){
 //           totalRecords++;
 //        }
-        /*
-         * 4. 得到beanList，即当前页记录
-         */
-        sql = "select * from goods.t_order" + whereSql + " order by ordertime desc limit ?,?";
+         //4. 得到beanList，即当前页记录
+        sql = "select * from goods.t_order" + whereSql + " order by ordertime  desc limit ?,?";
 
         params.add((pageNow-1) * pageSize);//当前页首行记录的下标
         params.add(pageSize);//一共查询几行，就是每页记录数
@@ -193,23 +190,17 @@ public class OrderDao {
         for(Order order : beanList) {
             loadOrderItem(order);
         }
-
-        /*
-         * 5. 创建PageBean，设置参数
-         */
+        //5. 创建PageBean，设置参数
         PageBean<Order> pb = new PageBean<Order>();
-        /*
-         * 其中PageBean没有url，这个任务由Servlet完成
-         */
+        //其中PageBean没有url，这个任务由Servlet完成
         pb.setBeanList(beanList);
         pb.setPageNow(pageNow);
         pb.setPageSize(pageSize);
         pb.setTotalRecords(totalRecords);
-
         return pb;
     }
 
-    /*
+    /**
      * 为指定的order载它的所有OrderItem
      */
     private void loadOrderItem(Order order) throws SQLException {
@@ -221,7 +212,6 @@ public class OrderDao {
         String sql = "select * from t_orderitem where oid=?";
         List<Map<String,Object>> mapList = template.queryForList(sql,order.getOid());
         List<OrderItem> orderItemList = toOrderItemList(mapList);
-
         order.setOrderItemList(orderItemList);
     }
 
@@ -239,7 +229,7 @@ public class OrderDao {
         return orderItemList;
     }
 
-    /*
+    /**
      * 把一个Map转换成一个OrderItem
      */
     private OrderItem toOrderItem(Map<String, Object> map) {

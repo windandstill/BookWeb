@@ -94,19 +94,18 @@ public class OrderService {
     public PageBean<Order> myOrders(String uid, int pageNow) throws SQLException {
         return orderDao.findByUser(uid,pageNow);
     }
-//
-////        try {
-////            JDBCUtils.beginTransaction();
-////            PageBean<Order> pb = orderDao.findByUser(uid, pageNow);
-////            JDBCUtils.commitTransaction();
-////            return pb;
-////        } catch (SQLException e) {
-////            try {
-////                JDBCUtils.rollbackTransaction();
-////            } catch (SQLException e1) {}
-////            throw new RuntimeException(e);
-////        }
-//    }
+    /*try {
+            JDBCUtils.beginTransaction();
+            PageBean<Order> pb = orderDao.findByUser(uid, pageNow);
+            JDBCUtils.commitTransaction();
+            return pb;
+        } catch (SQLException e) {
+           try {
+               JDBCUtils.rollbackTransaction();
+            } catch (SQLException e1) {}
+            throw new RuntimeException(e);
+       }
+    }*/
 
     /**
      * 按状态查询

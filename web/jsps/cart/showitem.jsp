@@ -72,14 +72,6 @@
 				  </c:forEach>
 
 
-
-
-
-
-
-
-
-
 				  <tr>
 					  <td colspan="6" align="right">
 						  <span>总计：</span><span class="price_t">&yen;<span id="total">${total }</span></span>
