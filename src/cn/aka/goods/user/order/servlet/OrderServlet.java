@@ -27,7 +27,7 @@ import java.util.Properties;
 @WebServlet("/user/OrderServlet")
 public class OrderServlet extends BaseServlet {
     private OrderService orderService = new OrderService();
-    private CartItemService cartItemService = new CartItemServiceImp();
+    private CartItemService cartItemServiceImp = new CartItemServiceImp();
 
     /**
      * 获取当前页码
@@ -389,7 +389,7 @@ public class OrderServlet extends BaseServlet {
          * 1. 获取所有购物车条目的id，查询之
          */
         String cartItemIds = req.getParameter("cartItemIds");
-        List<CartItem> cartItemList = cartItemService.loadCartItems(cartItemIds);
+        List<CartItem> cartItemList = cartItemServiceImp.loadCartItems(cartItemIds);
         if(cartItemList.size() == 0) {
             req.setAttribute("code", "error");
             req.setAttribute("msg", "您没有选择要购买的图书，不能下单！");
@@ -434,7 +434,7 @@ public class OrderServlet extends BaseServlet {
         orderService.createOrder(order);
 
         // 删除购物车条目
-        cartItemService.batchDelete(cartItemIds);
+        cartItemServiceImp.batchDelete(cartItemIds);
         /*
          * 5. 保存订单，转发到ordersucc.jsp
          */
