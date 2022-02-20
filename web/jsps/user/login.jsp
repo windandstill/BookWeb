@@ -74,7 +74,7 @@
                       <td>验证码</td>
                       <td>
                         <input class="input yzm" type="text" name="verifyCode" id="verifyCode" value="${user.verifyCode }"/>
-                        <img id="imgVerifyCode" src="<c:url value='/VerifyCodeServlet'/>"/>
+                        <img id="vCode" src="<c:url value='/VerifyCodeServlet'/>"/>
                         <a href="javascript:_change();">看不清，换一张</a>
                       </td>
                     </tr>
