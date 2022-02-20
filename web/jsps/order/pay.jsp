@@ -24,6 +24,12 @@
 				$("#" + $(this).attr("name")).attr("checked", true);
 			});
 		});
+		function pay(){
+			if(confirm("确认支付？")) {
+				alert("支付成功");
+				location = "${pageContext.request.contextPath}/user/OrderServlet?method=myOrders";
+			}
+		}
 	</script>
 </head>
 
@@ -118,7 +124,7 @@
 			</div>
 		</div>
 		<div style="margin: 40px;">
-			<a href="javascript:alert('支付成功！');" class="linkNext">下一步</a>
+			<a href="javascript:pay();" class="linkNext">下一步</a>
 		</div>
 	</div>
 </form>

@@ -82,7 +82,7 @@
 				  </tr>
 				  <tr>
 					  <td colspan="6">
-						  <input id="addr" type="text" name="address" value="北京市 昌平区 西三旗 金燕龙办公楼1层 传智播客 张三爷"/>
+						  <input id="addr" type="text" name="address" value=""/>
 					  </td>
 				  </tr>
 				  <tr>
