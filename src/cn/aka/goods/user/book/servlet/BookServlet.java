@@ -28,8 +28,8 @@ public class BookServlet extends BaseServlet {
 
     /**
      * 截取url，页面中的分页导航中需要使用它做为超链接的目标！
-     * http://localhost:8080/goods/BookServlet?methed=findByCategory&cid=xxx&pc=3
-     * /goods/BookServlet + methed=findByCategory&cid=xxx&pc=3
+     * http://localhost:8080/BookeWeb/user/bookServlet?methed=findByBname&bid=xxx&pageNow=3
+     * /BookeWeb/user/bookServlet + methed=findByBname&bid=xxx&pageNow=3
      */
     private String getUrl(HttpServletRequest req) {
         String url = req.getRequestURI() + "?" + req.getQueryString();
