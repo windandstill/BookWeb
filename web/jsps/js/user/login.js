@@ -125,11 +125,11 @@ function validateVerifyCode() {
 	}
 	return bool;
 }
-function _yzm() {
-	/*
+/*function _yzm() {
+	/!*
 	 * 1. 获取<img>元素
 	 * 2. 重新设置它的src
 	 * 3. 使用毫秒来添加参数
-	 */
+	 *!/
 	$("#imgVerifyCode").attr("src", "/BookWeb/VerifyCodeServlet?a=" + new Date().getTime());
-}
+}*/

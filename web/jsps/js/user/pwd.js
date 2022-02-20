@@ -110,7 +110,7 @@ function validateVerifyCode() {
 			type: "POST",
 			dataType: "json",
 			data: {method: "ajaxValidateVerifyCode", verifyCode: value},
-			url: "/goods/UserServlet",
+			url: "/BookWeb/user/userServlet",
 			success: function(flag) {
 				if(!flag) {
 					$("#verifyCodeError").css("display", "");
@@ -121,12 +121,4 @@ function validateVerifyCode() {
 		});
 	}
 	return bool;
-}
-function _yzm() {
-	/*
-	 * 1. 获取<img>元素
-	 * 2. 重新设置它的src
-	 * 3. 使用毫秒来添加参数
-	 */
-	$("#imgVerifyCode").attr("src", "/BookWeb/VerifyCodeServlet?a=" + new Date().getTime());
 }

@@ -42,6 +42,8 @@ public class UserServiceImp implements UserService {
         user.setActivationCode(CommonUtils.uuid() + CommonUtils.uuid());
         userDao.add(user);
 
+
+
         /**
          * 邮箱功能（暂时）
          */

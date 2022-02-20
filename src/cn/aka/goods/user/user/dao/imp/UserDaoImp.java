@@ -62,7 +62,7 @@ public class UserDaoImp implements UserDao {
     public void add(User user) {
         String sql = "insert into goods.t_user values(?,?,?,?,?,?)";
             Object[] params = {user.getUid(), user.getLoginname(), user.getLoginpass(),
-                    user.getEmail(), user.isStatus(), user.getActivationCode()};
+                    user.getEmail(), 1, user.getActivationCode()};
             template.update(sql, params);
     }
 

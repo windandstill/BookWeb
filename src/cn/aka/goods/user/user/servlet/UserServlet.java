@@ -35,7 +35,7 @@ public class UserServlet extends BaseServlet {
         }
         userService.regist(fromUser);
         request.setAttribute("code", "success");
-        request.setAttribute("msg", "注册成功!请到邮箱激活");
+        request.setAttribute("msg", "注册成功，请登录！");
         return "f:/jsps/msg.jsp";
     }
 

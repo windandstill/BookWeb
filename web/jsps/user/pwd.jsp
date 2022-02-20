@@ -54,7 +54,7 @@
 				<td align="right"></td>
 				<td>
 				  <img id="vCode" src="<c:url value='/VerifyCodeServlet'/>" border="1"/>
-		    	  <a href="javascript:_yzm();">看不清，换一张</a>
+		    	  <a href="javascript:_change();">看不清，换一张</a>
 				</td>
 			</tr>
 			<tr>
