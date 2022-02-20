@@ -19,6 +19,7 @@ public class UserDaoImp implements UserDao {
         /**
          * 按uid和password查询
          */
+        @Override
         public boolean findByUidAndPassword(String uid, String password){
             String sql = "select count(*) from goods.t_user where uid=? and loginpass=?";
             Long number = template.queryForObject(sql, Long.class, uid, password);
@@ -33,29 +34,6 @@ public class UserDaoImp implements UserDao {
             template.update(sql, password, uid);
         }
 
-        /**
-         * 按用户名和密码查询
-         */
-//        public User findByLoginnameAndLoginpass(String loginname, String loginpass) throws SQLException {
-//            String sql = "select * from t_user where loginname=? and loginpass=?";
-//            return template.query(sql, new BeanPropertyRowMapper<User>(User.class), loginname, loginpass);
-//        }
-
-        /**
-         * 通过激活码查询用户
-//         */
-//        public User findByCode(String code) throws SQLException {
-//            String sql = "select * from t_user where activationCode=?";
-//            return qr.query(sql, new BeanHandler<User>(User.class), code);
-//        }
-
-        /**
-         * 修改用户状态
-         */
-//        public void updateStatus(String uid, boolean status) throws SQLException {
-//            String sql = "update t_user set status=? where uid=?";
-//            qr.update(sql, status, uid);
-//        }
 
         /**
          * 校验用户名是否注册

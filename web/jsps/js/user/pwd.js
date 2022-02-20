@@ -48,22 +48,6 @@ function validateLoginpass() {
 		$("#loginpassError").css("display", "");
 		$("#loginpassError").text("密码长度必须在3 ~ 20之间！");
 		bool = false;
-	} else {// 验证原错误是否正确
-		$.ajax({
-			cache: false,
-			async: false,
-			type: "POST",
-			dataType: "json",
-			data: {method: "validateLoginpass", loginpass: value},
-			url: "/goods/UserServlet",
-			success: function(flag) {
-				if(!flag) {
-					$("#loginpassError").css("display", "");
-					$("#loginpassError").text("原密码错误！");
-					bool = false;				
-				}
-			}
-		});
 	}
 	return bool;
 }
@@ -125,7 +109,7 @@ function validateVerifyCode() {
 			async: false,
 			type: "POST",
 			dataType: "json",
-			data: {method: "validateVerifyCode", verifyCode: value},
+			data: {method: "ajaxValidateVerifyCode", verifyCode: value},
 			url: "/goods/UserServlet",
 			success: function(flag) {
 				if(!flag) {
@@ -137,4 +121,12 @@ function validateVerifyCode() {
 		});
 	}
 	return bool;
+}
+function _yzm() {
+	/*
+	 * 1. 获取<img>元素
+	 * 2. 重新设置它的src
+	 * 3. 使用毫秒来添加参数
+	 */
+	$("#imgVerifyCode").attr("src", "/BookWeb/VerifyCodeServlet?a=" + new Date().getTime());
 }

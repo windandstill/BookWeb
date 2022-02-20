@@ -11,4 +11,5 @@ public interface UserService {
     void regist(User user);
     void activation(String code) throws UserException;
     User login(User user);
+    void updatePassword(String uid,String newPass,String oldPass) throws UserException;
 }

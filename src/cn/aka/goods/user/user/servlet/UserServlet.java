@@ -226,6 +226,70 @@ public class UserServlet extends BaseServlet {
      */
     private Map<String, String> validateLogin(User formUser, HttpSession session) {
         Map<String, String> errors = new HashMap<String, String>();
+        /**
+         * 用户名校验
+         */
+        String loginname = formUser.getLoginname();
+        if(loginname==null||loginname.trim().isEmpty()){
+            errors.put("loginname","用户名不能为空");
+        }else if(loginname.length()<3||loginname.length()>20){
+            errors.put("loginname", "用户名长度必须在3~20之间！");
+        }
+
+        /*
+         * 校验密码
+         */
+        String loginpass = formUser.getLoginpass();
+        if (loginpass == null || loginpass.trim().isEmpty()) {
+            errors.put("loginpass", "密码不能为空！");
+        } else if (loginpass.length() < 3 || loginpass.length() > 20) {
+            errors.put("loginpass", "密码长度必须在3~20之间！");
+        }
+
+        /*
+         * 验证码校验
+         */
+        String verifyCode = formUser.getVerifyCode();
+        String vcode = (String) session.getAttribute("vCode");
+        if (verifyCode == null || verifyCode.trim().isEmpty()) {
+            errors.put("verifyCode", "验证码不能为空！");
+        } else if (!verifyCode.equalsIgnoreCase(vcode)) {
+            errors.put("verifyCode", "验证码错误！");
+        }
+
         return errors;
+    }
+
+    /**
+     * 修改密码
+     */
+    public String updatePassword(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        User formUser = CommonUtils.toBean(req.getParameterMap(), User.class);
+        User user = (User)req.getSession().getAttribute("sessionUser");
+        // 用户未登录
+        if(user == null) {
+            req.setAttribute("msg", "您还没有登录！");
+            return "f:/jsps/user/login.jsp";
+        }
+        try {
+            userService.updatePassword(user.getUid(), formUser.getNewpass(), formUser.getLoginpass());
+            req.setAttribute("msg", "修改密码成功");
+            req.setAttribute("code", "success");
+            return "f:/jsps/msg.jsp";
+        } catch (UserException e) {
+            req.setAttribute("msg", e.getMessage());//保存异常信息到request
+            req.setAttribute("user", formUser);
+            return "f:/jsps/user/pwd.jsp";
+        }
+    }
+
+    /**
+     * 退出
+     */
+    public String quit(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        req.getSession().invalidate();
+        return "r:/jsps/user/login.jsp";
     }
 }

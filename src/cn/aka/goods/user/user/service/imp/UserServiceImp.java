@@ -42,23 +42,26 @@ public class UserServiceImp implements UserService {
         user.setActivationCode(CommonUtils.uuid() + CommonUtils.uuid());
         userDao.add(user);
 
-        Properties prop = new Properties();
+        /**
+         * 邮箱功能（暂时）
+         */
+        /*Properties prop = new Properties();
         try {
             prop.load(this.getClass().getClassLoader().getResourceAsStream("email_template.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /**
+        *//**
          * 登陆邮件服务器
-         */
+         *//*
         String host = prop.getProperty("host");
         String name = prop.getProperty("username");
         String pass = prop.getProperty("password");
         Session session = MailUtils.createSession(host, name, pass);
 
-        /**
+        *//**
          * 创建Mail
-         */
+         *//*
         String from = prop.getProperty("from");
         String to = user.getEmail();
         String subject = prop.getProperty("subject");
@@ -70,7 +73,7 @@ public class UserServiceImp implements UserService {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     /**
@@ -91,5 +94,14 @@ public class UserServiceImp implements UserService {
     @Override
     public User login(User user) {
         return userDao.findByLoginnameAndLoginpass(user.getLoginname(), user.getLoginpass());
+    }
+
+    @Override
+    public void updatePassword(String uid, String newPass, String oldPass) throws UserException {
+        boolean bool = userDao.findByUidAndPassword(uid, oldPass);
+        if(!bool){
+            throw new UserException("原密码错误");
+        }
+        userDao.updatePassword(uid,newPass);
     }
 }

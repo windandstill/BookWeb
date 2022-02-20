@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface UserDao {
     /**
-     * 校验用户名是否注册n
+     * 校验用户名是否注册
      */
     boolean ajaxValidateLoginname(String loginname);
 
@@ -32,4 +32,14 @@ public interface UserDao {
     void updateStatus(String uid,boolean status);
 
     User findByLoginnameAndLoginpass(String loginname, String loginpass);
+
+    /**
+     * 查询密码
+     */
+    boolean findByUidAndPassword(String uid,String password);
+
+    /**
+     * 修改密码
+     */
+    void updatePassword(String uid, String password);
 }

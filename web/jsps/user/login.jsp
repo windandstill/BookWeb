@@ -60,7 +60,7 @@
                     </tr>
                     <tr>
                       <td height="20">&nbsp;</td>
-                      <td><label id="loginnameError" class="error"></label></td>
+                      <td><label id="loginnameError" class="error"></label>${errors.loginname}</td>
                     </tr>
                     <tr>
                       <td>密　码</td>
@@ -68,7 +68,7 @@
                     </tr>
                     <tr>
                       <td height="20">&nbsp;</td>
-                      <td><label id="loginpassError" class="error"></label></td>
+                      <td><label id="loginpassError" class="error">${errors.loginpass}</label></td>
                     </tr>
                     <tr>
                       <td>验证码</td>
@@ -80,7 +80,7 @@
                     </tr>
                     <tr>
                       <td height="20px">&nbsp;</td>
-                      <td><label id="verifyCodeError" class="error"></label></td>
+                      <td><label id="verifyCodeError" class="error">${errors.verifyCode}</label></td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
